@@ -1,0 +1,86 @@
+/* Ozadje */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Kartica */
+.register {
+    background: white;
+    padding: 40px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Naslov */
+.register h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Forma */
+.register form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label */
+.register label {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Input */
+.register input {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+}
+
+.register input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+}
+
+/* Gumb */
+.register button {
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #667eea;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.register button:hover {
+    background-color: #5a67d8;
+}
+
+/* Link */
+.register p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.register a:hover {
+    text-decoration: underline;
+}
