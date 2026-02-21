@@ -22,8 +22,8 @@ namespace TinderZaBendeBackend.Controllers
             => await _db.Uporabniki.ToListAsync();
 
         // GET: api/uporabniki/{id}
-        [HttpGet("{id:guid}")]
-        public async Task<ActionResult<Uporabnik>> GetById(Guid id)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<Uporabnik>> GetById(int id)
         {
             var u = await _db.Uporabniki.FindAsync(id);
             return u is null ? NotFound() : Ok(u);
@@ -33,7 +33,7 @@ namespace TinderZaBendeBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<Uporabnik>> Create(Uporabnik uporabnik)
         {
-            uporabnik.Id = Guid.NewGuid();
+      
             _db.Uporabniki.Add(uporabnik);
             await _db.SaveChangesAsync();
 
@@ -41,8 +41,8 @@ namespace TinderZaBendeBackend.Controllers
         }
 
         // PUT: api/uporabniki/{id}
-        [HttpPut("{id:guid}")]
-        public async Task<IActionResult> Update(Guid id, Uporabnik updated)
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, Uporabnik updated)
         {
             var existing = await _db.Uporabniki.FindAsync(id);
             if (existing is null) return NotFound();
@@ -61,8 +61,8 @@ namespace TinderZaBendeBackend.Controllers
         }
 
         // DELETE: api/uporabniki/{id}
-        [HttpDelete("{id:guid}")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
         {
             var existing = await _db.Uporabniki.FindAsync(id);
             if (existing is null) return NotFound();
