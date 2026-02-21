@@ -1,0 +1,111 @@
+[
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.UporabnikiController",
+    "Method": "GetAll",
+    "RelativePath": "api/Uporabniki",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[TinderZaBendeBackend.Models.Entities.Uporabnik, TinderZaBendeBackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.UporabnikiController",
+    "Method": "Create",
+    "RelativePath": "api/Uporabniki",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uporabnik",
+        "Type": "TinderZaBendeBackend.Models.Entities.Uporabnik",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TinderZaBendeBackend.Models.Entities.Uporabnik",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.UporabnikiController",
+    "Method": "GetById",
+    "RelativePath": "api/Uporabniki/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TinderZaBendeBackend.Models.Entities.Uporabnik",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.UporabnikiController",
+    "Method": "Update",
+    "RelativePath": "api/Uporabniki/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "TinderZaBendeBackend.Models.Entities.Uporabnik",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.UporabnikiController",
+    "Method": "Delete",
+    "RelativePath": "api/Uporabniki/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
