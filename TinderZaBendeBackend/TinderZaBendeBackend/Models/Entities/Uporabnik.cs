@@ -26,7 +26,7 @@ public class Uporabnik
     public required string telefon { get; set; }
 
     [Column("geslo")]
-    public required string geslo { get; set; }
+    public string geslo { get; set; } = string.Empty;
 
     [Column("kraj_id")]
     public int? kraj_id { get; set; }
