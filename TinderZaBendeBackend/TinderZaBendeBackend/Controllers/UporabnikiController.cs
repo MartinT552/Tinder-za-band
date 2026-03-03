@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TinderZaBendeBackend.Data;
 using TinderZaBendeBackend.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TinderZaBendeBackend.Controllers
 {
@@ -18,8 +20,24 @@ namespace TinderZaBendeBackend.Controllers
 
         // GET: api/uporabniki
         [HttpGet]
-        public async Task<ActionResult<List<Uporabnik>>> GetAll()
-            => await _db.Uporabniki.ToListAsync();
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var users = await _db.Uporabniki
+                .Select(u => new {
+                    u.Id,
+                    u.Ime,
+                    u.bio,
+                    u.instrument,
+                    u.zanr,
+                    u.email,
+                    u.telefon,
+                    u.kraj_id
+                })
+                .ToListAsync();
+
+            return Ok(users);
+        }
 
         // GET: api/uporabniki/{id}
         [HttpGet("{id:int}")]
@@ -71,5 +89,14 @@ namespace TinderZaBendeBackend.Controllers
             await _db.SaveChangesAsync();
             return NoContent();
         }
+
+   
+
+[Authorize]
+    [HttpGet("secret")]
+    public IActionResult Secret()
+    {
+        return Ok("To vidiš samo z veljavnim tokenom ✅");
     }
+}
 }

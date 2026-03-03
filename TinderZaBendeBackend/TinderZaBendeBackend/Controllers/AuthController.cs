@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using TinderZaBendeBackend.Data;
 using TinderZaBendeBackend.DTO;
 using TinderZaBendeBackend.Models.Entities;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace TinderZaBendeBackend.Controllers
 {
@@ -14,9 +18,12 @@ namespace TinderZaBendeBackend.Controllers
         private readonly ApplicationDbContext _db;
         private readonly PasswordHasher<Uporabnik> _passwordHasher;
 
-        public AuthController(ApplicationDbContext db)
+        private readonly IConfiguration _config;
+
+        public AuthController(ApplicationDbContext db, IConfiguration config)
         {
             _db = db;
+            _config = config;
             _passwordHasher = new PasswordHasher<Uporabnik>();
         }
 
@@ -75,18 +82,57 @@ namespace TinderZaBendeBackend.Controllers
             if (user == null)
                 return Unauthorized("Napačen email ali geslo.");
 
-            var result = _passwordHasher.VerifyHashedPassword(user, user.geslo, dto.Password);
+            PasswordVerificationResult result;
+            try
+            {
+                result = _passwordHasher.VerifyHashedPassword(user, user.geslo, dto.Password);
+            }
+            catch (FormatException)
+            {
+                return Unauthorized("Napačen email ali geslo.");
+            }
+
             if (result == PasswordVerificationResult.Failed)
                 return Unauthorized("Napačen email ali geslo.");
 
+            var token = GenerateJwtToken(user);
 
             return Ok(new
             {
-                Message = "Login uspešen",
-                user.Id,
-                user.Ime,
-                Email = user.email
+                token,
+                user = new
+                {
+                    user.Id,
+                    user.Ime,
+                    Email = user.email
+                }
             });
+        }
+        private string GenerateJwtToken(Uporabnik user)
+        {
+            var claims = new List<Claim>
+    {
+        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+        new Claim(JwtRegisteredClaimNames.Email, user.email),
+        new Claim("ime", user.Ime)
+    };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var expires = DateTime.UtcNow.AddMinutes(
+                double.Parse(_config["Jwt:ExpiresMinutes"] ?? "120")
+            );
+
+            var token = new JwtSecurityToken(
+                issuer: _config["Jwt:Issuer"],
+                audience: _config["Jwt:Audience"],
+                claims: claims,
+                expires: expires,
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
