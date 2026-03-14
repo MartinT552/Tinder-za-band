@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using TinderZaBendeBackend.Data;
 using TinderZaBendeBackend.DTO;
 using TinderZaBendeBackend.Models.Entities;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace TinderZaBendeBackend.Controllers
 {
@@ -17,7 +18,6 @@ namespace TinderZaBendeBackend.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly PasswordHasher<Uporabnik> _passwordHasher;
-
         private readonly IConfiguration _config;
 
         public AuthController(ApplicationDbContext db, IConfiguration config)
@@ -40,8 +40,6 @@ namespace TinderZaBendeBackend.Controllers
             if (exists)
                 return BadRequest("Email že obstaja.");
 
- 
-
             var user = new Uporabnik
             {
                 Ime = dto.Ime.Trim(),
@@ -51,13 +49,11 @@ namespace TinderZaBendeBackend.Controllers
                 kraj_id = dto.Kraj_Id
             };
 
-            // Hash password -> shrani v user.geslo
             user.geslo = _passwordHasher.HashPassword(user, dto.Password);
 
             _db.Uporabniki.Add(user);
             await _db.SaveChangesAsync();
 
-            // Ne vračaj gesla/hashev
             return StatusCode(201, new
             {
                 user.Id,
@@ -108,14 +104,39 @@ namespace TinderZaBendeBackend.Controllers
                 }
             });
         }
+
+        // GET: api/auth/me
+        [Authorize]
+        [HttpGet("me")]
+        public async Task<IActionResult> Me()
+        {
+            var sub = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                      ?? User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+
+            if (string.IsNullOrWhiteSpace(sub) || !int.TryParse(sub, out var userId))
+                return Unauthorized();
+
+            var user = await _db.Uporabniki
+                .Where(u => u.Id == userId)
+                .Select(u => new
+                {
+                    u.Id,
+                    u.Ime,
+                    Email = u.email
+                })
+                .FirstOrDefaultAsync();
+
+            return user is null ? NotFound() : Ok(user);
+        }
+
         private string GenerateJwtToken(Uporabnik user)
         {
             var claims = new List<Claim>
-    {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-        new Claim(JwtRegisteredClaimNames.Email, user.email),
-        new Claim("ime", user.Ime)
-    };
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.email),
+                new Claim("ime", user.Ime)
+            };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

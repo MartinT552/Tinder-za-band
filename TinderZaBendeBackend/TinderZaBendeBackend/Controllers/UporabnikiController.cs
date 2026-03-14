@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TinderZaBendeBackend.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UporabnikiController : ControllerBase
