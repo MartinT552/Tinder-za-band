@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -10,6 +10,7 @@ export default function Register() {
     password: ""
   });
 
+  const [kraji, setKraji] = useState([]);
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
@@ -19,9 +20,71 @@ export default function Register() {
     });
   };
 
+  useEffect(() => {
+    fetch("https://localhost:7001/api/kraji")
+      .then((res) => res.json())
+      .then((data) => setKraji(data))
+      .catch((err) =>
+        console.error("Napaka pri nalaganju krajev:", err)
+      );
+  }, []);
+
   const handleRegister = async (e) => {
     e.preventDefault();
-    setMessage("Test");
+
+    // ✅ VALIDACIJA
+    if (form.password.length < 6) {
+      setMessage("Geslo mora imeti vsaj 6 znakov.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "https://localhost:7001/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            ime: form.ime,
+            email: form.email,
+            telefon: form.telefon,
+            instrument: form.instrument,
+            kraj_Id: form.kraj_Id
+              ? parseInt(form.kraj_Id, 10)
+              : null,
+            password: form.password
+          })
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setMessage(
+          typeof data === "string"
+            ? data
+            : "Napaka pri registraciji."
+        );
+        return;
+      }
+
+      setMessage("Registracija uspešna!");
+
+      // reset forme
+      setForm({
+        ime: "",
+        email: "",
+        telefon: "",
+        instrument: "",
+        kraj_Id: "",
+        password: ""
+      });
+    } catch (err) {
+      console.error(err);
+      setMessage("Backend ni dosegljiv.");
+    }
   };
 
   return (
@@ -30,12 +93,63 @@ export default function Register() {
         <form onSubmit={handleRegister} className="form">
           <h2>Registracija</h2>
 
-          <input name="ime" placeholder="Ime" onChange={handleChange} />
-          <input name="email" placeholder="Email" onChange={handleChange} />
-          <input name="telefon" placeholder="Telefon" onChange={handleChange} />
-          <input name="instrument" placeholder="Instrument" onChange={handleChange} />
-          <input name="kraj_Id" placeholder="Kraj ID" onChange={handleChange} />
-          <input name="password" type="password" placeholder="Geslo" onChange={handleChange} />
+          <input
+            name="ime"
+            placeholder="Ime"
+            value={form.ime}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            name="telefon"
+            placeholder="Telefon"
+            value={form.telefon}
+            onChange={handleChange}
+          />
+
+          <input
+            name="instrument"
+            placeholder="Instrument"
+            value={form.instrument}
+            onChange={handleChange}
+          />
+
+          <div className="select-wrapper">
+            <select
+              name="kraj_Id"
+              value={form.kraj_Id}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Izberi kraj
+              </option>
+              {kraji.map((kraj) => (
+                <option key={kraj.id} value={kraj.id}>
+                  {kraj.ime}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <input
+            name="password"
+            type="password"
+            placeholder="Geslo"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
 
           <button type="submit">Registracija</button>
 
