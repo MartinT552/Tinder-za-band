@@ -32,7 +32,7 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    // ✅ VALIDACIJA
+ 
     if (form.password.length < 6) {
       setMessage("Geslo mora imeti vsaj 6 znakov.");
       return;
@@ -71,8 +71,9 @@ export default function Register() {
       }
 
       setMessage("Registracija uspešna!");
+      location.href = "../GlavnaStran"; 
 
-      // reset forme
+     
       setForm({
         ime: "",
         email: "",
