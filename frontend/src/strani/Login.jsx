@@ -31,7 +31,7 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       setMessage("Prijava uspešna!");
-      location.href = "../GlavnaStran"; 
+      location.href = "../Profile"; 
     } catch (error) {
       console.error(error);
       setMessage("Backend ni dosegljiv.");

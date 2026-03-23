@@ -12,7 +12,28 @@ export default function Register() {
 
   const [kraji, setKraji] = useState([]);
   const [message, setMessage] = useState("");
-
+  const instrumenti = [
+  "Kitara",
+  "Bas",
+  "Bobni",
+  "Klavir",
+  "Sintisajzer",
+  "Violina",
+  "Saksofon",
+  "Trobenta",
+  "Flavta",
+  "Harmonika",
+  "Ukulele",
+  "Mandolina",
+  "Čelo",
+  "Kontrabas",
+  "Harfa",
+  "Klarinet",
+  "Fagot",
+  "Oboa",
+  "Tuba",
+  "Orgle"
+];
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -118,12 +139,24 @@ export default function Register() {
             onChange={handleChange}
           />
 
-          <input
-            name="instrument"
-            placeholder="Instrument"
-            value={form.instrument}
-            onChange={handleChange}
-          />
+    
+          <div className="select-wrapper">
+            <select
+              name="instrument"
+              value={form.instrument}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Izberi instrument
+              </option>
+              {instrumenti.map((inst) => (
+                <option key={inst} value={inst}>
+                  {inst}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div className="select-wrapper">
             <select
