@@ -15,7 +15,7 @@ export default function Profile() {
         return;
       }
 
-      const response = await fetch("https://localhost:7247/api/auth/me", {
+      const response = await fetch("https://localhost:7001/api/auth/me", {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`
