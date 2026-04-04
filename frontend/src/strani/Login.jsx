@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -31,7 +32,8 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       setMessage("Prijava uspešna!");
-      location.href = "../Profile"; 
+      const navigate = useNavigate();
+      navigate("/profile");
     } catch (error) {
       console.error(error);
       setMessage("Backend ni dosegljiv.");
