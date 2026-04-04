@@ -12,13 +12,9 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("TinderZaBendeBackend")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< Updated upstream
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7713cb7149fbb6284ab248944c12f15631f1be21")]
-=======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52f28b0ba77ea7b3f20ecc10261fc43b94b2146e")]
->>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("TinderZaBendeBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TinderZaBendeBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
