@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MPV81frhI64=",
+  "dgSpecHash": "BO+01hxnA+Q=",
   "success": true,
-  "projectFilePath": "C:\\xampp\\htdocs\\cpp\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\TinderZaBendeBackend.csproj",
+  "projectFilePath": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\TinderZaBendeBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mark1\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\mark1\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

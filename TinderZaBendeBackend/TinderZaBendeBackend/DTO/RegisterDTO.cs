@@ -23,5 +23,7 @@ namespace TinderZaBendeBackend.DTO
         [MinLength(6)]
         public string Password { get; set; }
 
+        public IFormFile? Slika { get; set; }
+
     }
 }

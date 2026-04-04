@@ -34,8 +34,54 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "Ime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Telefon",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Instrument",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Kraj_Id",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Slika",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.AuthController",
+    "Method": "Update",
+    "RelativePath": "api/Auth/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
         "Name": "dto",
-        "Type": "TinderZaBendeBackend.DTO.RegisterDTO",
+        "Type": "TinderZaBendeBackend.DTO.UpdateUserDto",
         "IsRequired": true
       }
     ],

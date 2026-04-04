@@ -30,4 +30,7 @@ public class Uporabnik
 
     [Column("kraj_id")]
     public int? kraj_id { get; set; }
+
+    [Column("slike")]
+    public string? slika { get; set; }
 }

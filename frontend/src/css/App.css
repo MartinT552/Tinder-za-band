@@ -305,3 +305,68 @@ a:hover {
     transform: translateY(0);
   }
 }
+
+/*Profile*/
+/* PROFILE SPECIFIC */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* posamezen row */
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--input);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: 0.2s ease;
+}
+
+.profile-row:hover {
+  background: var(--input-focus);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* label (npr. Ime:) */
+.profile-label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* value */
+.profile-value {
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* BUTTON (isti stil kot form) */
+.profile-card button {
+  margin-top: 18px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.22s ease;
+}
+
+.profile-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 77, 109, 0.35);
+}
+
+/* loading */
+.profile-loading {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 10px;
+}

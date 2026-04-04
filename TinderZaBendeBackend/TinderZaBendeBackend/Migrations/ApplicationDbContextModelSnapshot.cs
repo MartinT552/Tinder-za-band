@@ -59,7 +59,7 @@ namespace TinderZaBendeBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Uporabniki");
+                    b.ToTable("Uporabniki", (string)null);
                 });
 #pragma warning restore 612, 618
         }

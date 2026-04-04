@@ -29,16 +29,39 @@ namespace TinderZaBendeBackend.Controllers
 
         // POST: api/auth/register
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDTO dto)
+        public async Task<IActionResult> Register([FromForm] RegisterDTO dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var email = dto.Email.Trim().ToLower();
-
             var exists = await _db.Uporabniki.AnyAsync(x => x.email.ToLower() == email);
             if (exists)
                 return BadRequest("Email že obstaja.");
+
+            // Obdelaj sliko
+            string? slikaPot = null;
+            if (dto.Slika != null && dto.Slika.Length > 0)
+            {
+                var dovoljeneKoncnice = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+                var koncnica = Path.GetExtension(dto.Slika.FileName).ToLower();
+                if (!dovoljeneKoncnice.Contains(koncnica))
+                    return BadRequest("Nepodprta vrsta datoteke. Dovoljene: jpg, jpeg, png, webp.");
+
+                if (dto.Slika.Length > 5 * 1024 * 1024)
+                    return BadRequest("Slika je prevelika (max 5MB).");
+
+                var mapaZaSlike = Path.Combine("wwwroot", "slike");
+                Directory.CreateDirectory(mapaZaSlike);
+
+                var imeDate = $"{Guid.NewGuid()}{koncnica}";
+                var polnaPot = Path.Combine(mapaZaSlike, imeDate);
+
+                using var stream = new FileStream(polnaPot, FileMode.Create);
+                await dto.Slika.CopyToAsync(stream);
+
+                slikaPot = $"/slike/{imeDate}";
+            }
 
             var user = new Uporabnik
             {
@@ -46,11 +69,11 @@ namespace TinderZaBendeBackend.Controllers
                 email = email,
                 telefon = dto.Telefon.Trim(),
                 instrument = dto.Instrument.Trim(),
-                kraj_id = dto.Kraj_Id
+                kraj_id = dto.Kraj_Id,
+                slika = slikaPot  
             };
 
             user.geslo = _passwordHasher.HashPassword(user, dto.Password);
-
             _db.Uporabniki.Add(user);
             await _db.SaveChangesAsync();
 
@@ -61,7 +84,8 @@ namespace TinderZaBendeBackend.Controllers
                 Email = user.email,
                 user.telefon,
                 user.instrument,
-                user.kraj_id
+                user.kraj_id,
+                user.slika  // ← vrni pot tudi v responsu
             });
         }
 
@@ -122,7 +146,12 @@ namespace TinderZaBendeBackend.Controllers
                 {
                     u.Id,
                     u.Ime,
-                    Email = u.email
+                    Email = u.email,
+                    u.telefon,
+                    u.instrument,
+                    u.kraj_id,
+                    u.slika
+
                 })
                 .FirstOrDefaultAsync();
 
@@ -154,6 +183,28 @@ namespace TinderZaBendeBackend.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        [Authorize]
+        [HttpPut("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateUserDto dto)
+        {
+            var sub = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                      ?? User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+            if (string.IsNullOrWhiteSpace(sub) || !int.TryParse(sub, out var userId))
+                return Unauthorized();
+
+            var user = await _db.Uporabniki.FindAsync(userId);
+            if (user is null) return NotFound();
+
+            user.Ime = dto.Ime;
+            user.email = dto.Email;
+            user.telefon = dto.Telefon;
+            user.instrument = dto.Instrument;
+            user.kraj_id = dto.Kraj_Id;
+
+            await _db.SaveChangesAsync();
+            return Ok();
         }
     }
 }

@@ -5,12 +5,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // ✅ pravilno
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://localhost:7001/api/auth/login", {
+      const response = await fetch("https://localhost:7001/api/Auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -32,8 +33,7 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       setMessage("Prijava uspešna!");
-      const navigate = useNavigate();
-      navigate("/profile");
+      navigate("/profile"); 
     } catch (error) {
       console.error(error);
       setMessage("Backend ni dosegljiv.");

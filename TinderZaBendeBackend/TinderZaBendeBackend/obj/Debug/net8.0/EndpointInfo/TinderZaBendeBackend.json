@@ -12,19 +12,66 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/RegisterDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterDTO"
+                "required": [
+                  "Email",
+                  "Ime",
+                  "Instrument",
+                  "Password",
+                  "Telefon"
+                ],
+                "type": "object",
+                "properties": {
+                  "Ime": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "Telefon": {
+                    "type": "string"
+                  },
+                  "Instrument": {
+                    "type": "string"
+                  },
+                  "Kraj_Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Password": {
+                    "minLength": 6,
+                    "type": "string"
+                  },
+                  "Slika": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Ime": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Telefon": {
+                  "style": "form"
+                },
+                "Instrument": {
+                  "style": "form"
+                },
+                "Kraj_Id": {
+                  "style": "form"
+                },
+                "Password": {
+                  "style": "form"
+                },
+                "Slika": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -72,6 +119,37 @@
         "tags": [
           "Auth"
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/update": {
+      "put": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1074,41 +1152,29 @@
         },
         "additionalProperties": false
       },
-      "RegisterDTO": {
-        "required": [
-          "email",
-          "ime",
-          "instrument",
-          "password",
-          "telefon"
-        ],
+      "UpdateUserDto": {
         "type": "object",
         "properties": {
           "ime": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "email": {
-            "minLength": 1,
             "type": "string",
-            "format": "email"
+            "nullable": true
           },
           "telefon": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "instrument": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "kraj_Id": {
             "type": "integer",
             "format": "int32",
             "nullable": true
-          },
-          "password": {
-            "minLength": 6,
-            "type": "string"
           }
         },
         "additionalProperties": false
@@ -1157,6 +1223,10 @@
           "kraj_id": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "slika": {
+            "type": "string",
             "nullable": true
           }
         },

@@ -7,9 +7,13 @@ export default function Register() {
     telefon: "",
     instrument: "",
     kraj_Id: "",
-    password: ""
+    password: "",
+    slika: null
   });
 
+  const handleFileChange = (e) => {
+  setForm({ ...form, slika: e.target.files[0] });
+};
   const [kraji, setKraji] = useState([]);
   const [message, setMessage] = useState("");
   const instrumenti = [
@@ -50,64 +54,49 @@ export default function Register() {
       );
   }, []);
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
+const handleRegister = async (e) => {
+  e.preventDefault();
 
- 
-    if (form.password.length < 6) {
-      setMessage("Geslo mora imeti vsaj 6 znakov.");
+  if (form.password.length < 6) {
+    setMessage("Geslo mora imeti vsaj 6 znakov.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("ime", form.ime);
+  formData.append("email", form.email);
+  formData.append("telefon", form.telefon);
+  formData.append("instrument", form.instrument);
+  if (form.kraj_Id) formData.append("kraj_Id", parseInt(form.kraj_Id, 10));
+  formData.append("password", form.password);
+  if (form.slika) formData.append("slika", form.slika);
+
+  try {
+    const response = await fetch("https://localhost:7001/api/auth/register", {
+      method: "POST",
+      body: formData
+    });
+
+    const text = await response.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = text;
+    }
+
+    if (!response.ok) {
+      setMessage(typeof data === "string" ? data : "Napaka pri registraciji.");
       return;
     }
 
-    try {
-      const response = await fetch(
-        "https://localhost:7001/api/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            ime: form.ime,
-            email: form.email,
-            telefon: form.telefon,
-            instrument: form.instrument,
-            kraj_Id: form.kraj_Id
-              ? parseInt(form.kraj_Id, 10)
-              : null,
-            password: form.password
-          })
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setMessage(
-          typeof data === "string"
-            ? data
-            : "Napaka pri registraciji."
-        );
-        return;
-      }
-
-      setMessage("Registracija uspešna!");
-      location.href = "../GlavnaStran"; 
-
-     
-      setForm({
-        ime: "",
-        email: "",
-        telefon: "",
-        instrument: "",
-        kraj_Id: "",
-        password: ""
-      });
-    } catch (err) {
-      console.error(err);
-      setMessage("Backend ni dosegljiv.");
-    }
-  };
+    setMessage("Registracija uspešna!");
+    location.href = "../Profile";
+  } catch (err) {
+    console.error("Fetch napaka:", err.message);
+    setMessage(`Napaka: ${err.message}`);
+  }
+};
 
   return (
     <div className="page center-page">
@@ -183,6 +172,12 @@ export default function Register() {
             value={form.password}
             onChange={handleChange}
             required
+          />
+          <input
+            name="slika"
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
           />
 
           <button type="submit">Registracija</button>

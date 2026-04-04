@@ -14,10 +14,26 @@ export default function SpremeniProfil() {
   const [error, setError] = useState(null);
 
   const instrumenti = [
-    "Kitara","Bas","Bobni","Klavir","Sintisajzer","Violina",
-    "Saksofon","Trobenta","Flavta","Harmonika","Ukulele",
-    "Mandolina","Čelo","Kontrabas","Harfa","Klarinet",
-    "Fagot","Oboa","Tuba","Orgle"
+      "Kitara",
+  "Bas",
+  "Bobni",
+  "Klavir",
+  "Sintisajzer",
+  "Violina",
+  "Saksofon",
+  "Trobenta",
+  "Flavta",
+  "Harmonika",
+  "Ukulele",
+  "Mandolina",
+  "Čelo",
+  "Kontrabas",
+  "Harfa",
+  "Klarinet",
+  "Fagot",
+  "Oboa",
+  "Tuba",
+  "Orgle"
   ];
 
   useEffect(() => {
@@ -36,7 +52,7 @@ export default function SpremeniProfil() {
         setKraji(krajiData);
 
         // 2. Pridobi uporabnika
-        const resUser = await fetch("https://localhost:7001/api/auth/me", {
+        const resUser = await fetch("https://localhost:7001/api/Auth/me", {
           headers: { Authorization: `Bearer ${token}` }
         });
         const userData = await resUser.json();
@@ -53,7 +69,7 @@ export default function SpremeniProfil() {
             ? userData.instrument.charAt(0).toUpperCase() + userData.instrument.slice(1).toLowerCase() 
             : "",
           // Nujno pretvorimo ID v STRING, da ga <select> prepozna
-          kraj_Id: userData.krajId ? userData.krajId.toString() : (userData.kraj_Id ? userData.kraj_Id.toString() : "")
+          kraj_Id: userData.kraj_id ? userData.kraj_id.toString() : ""
         });
 
       } catch (err) {
@@ -71,30 +87,35 @@ export default function SpremeniProfil() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem("token");
 
-    try {
-      const response = await fetch("https://localhost:7001/api/auth/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          ...user,
-          // Za backend pretvorimo nazaj v številko
-          kraj_Id: user.kraj_Id ? parseInt(user.kraj_Id) : null
-        })
-      });
+  try {
+    const response = await fetch("https://localhost:7001/api/Auth/update", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        ...user,
+        kraj_Id: user.kraj_Id ? parseInt(user.kraj_Id) : null
+      })
+    });
 
-      if (!response.ok) throw new Error("Napaka pri posodabljanju");
-      alert("Profil uspešno posodobljen!");
-    } catch (err) {
-      alert(err.message);
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.log("Status:", response.status);
+      console.log("Napaka iz backenda:", errorText);
+      throw new Error(errorText);
     }
-  };
+
+    alert("Profil uspešno posodobljen!");
+  } catch (err) {
+    alert(err.message);
+  }
+};
 
   if (loading) return <div>Nalaganje...</div>;
   if (error) return <div>{error}</div>;
