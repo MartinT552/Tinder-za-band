@@ -6,6 +6,8 @@ import Register from "./strani/Register";
 import Profile from "./strani/Profile";
 import Navbar from "./komponenti/Navbar";
 import "./css/App.css";
+import SpremeniProfil from "./strani/SpremeniProfil";
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/spremeniProfil" element={<SpremeniProfil />} />
         </Routes>
       </div>
     </Router>

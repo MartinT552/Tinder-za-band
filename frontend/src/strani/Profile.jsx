@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
 
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -44,6 +46,9 @@ export default function Profile() {
           <p>ID: {user.id}</p>
           <p>Ime: {user.ime}</p>
           <p>Email: {user.email}</p>
+          <button onClick={() => navigate("/spremeniProfil")}>
+            Spremeni Profil
+          </button>
         </div>
       ) : (
         <p>Loading...</p>
