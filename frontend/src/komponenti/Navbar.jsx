@@ -8,6 +8,8 @@ function Navbar() {
         <Link to="/">Domov</Link>
         <Link to="/login">Prijava</Link>
         <Link to="/register">Registracija</Link>
+        <Link to="/profile">Profil</Link>
+        <Link to="/matching">Matching</Link>
       </div>
     </nav>
   );
