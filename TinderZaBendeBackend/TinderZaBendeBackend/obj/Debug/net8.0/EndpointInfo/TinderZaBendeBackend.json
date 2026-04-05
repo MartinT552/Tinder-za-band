@@ -672,6 +672,114 @@
         }
       }
     },
+    "/api/Matching/objave-za-uporabnika/{uporabnikId}": {
+      "get": {
+        "tags": [
+          "Matching"
+        ],
+        "parameters": [
+          {
+            "name": "uporabnikId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Matching/uporabniki-za-band/{bandId}": {
+      "get": {
+        "tags": [
+          "Matching"
+        ],
+        "parameters": [
+          {
+            "name": "bandId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Matching/glasbenik-oceni-objavo": {
+      "post": {
+        "tags": [
+          "Matching"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GlasbenikOceniObjavoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GlasbenikOceniObjavoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GlasbenikOceniObjavoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Matching/band-oceni-uporabnika": {
+      "post": {
+        "tags": [
+          "Matching"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BandOceniUporabnikaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BandOceniUporabnikaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BandOceniUporabnikaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Objave": {
       "get": {
         "tags": [
@@ -1059,6 +1167,42 @@
             "format": "int32"
           },
           "slike": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BandOceniUporabnikaDto": {
+        "type": "object",
+        "properties": {
+          "bandId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uporabnikId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dolocitev": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GlasbenikOceniObjavoDto": {
+        "type": "object",
+        "properties": {
+          "uporabnikId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "objavaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dolocitev": {
             "type": "string",
             "nullable": true
           }

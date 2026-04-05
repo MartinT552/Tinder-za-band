@@ -394,6 +394,70 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TinderZaBendeBackend.Controllers.MatchingController",
+    "Method": "BandOceniUporabnika",
+    "RelativePath": "api/Matching/band-oceni-uporabnika",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TinderZaBendeBackend.Controllers.BandOceniUporabnikaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.MatchingController",
+    "Method": "GlasbenikOceniObjavo",
+    "RelativePath": "api/Matching/glasbenik-oceni-objavo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TinderZaBendeBackend.Controllers.GlasbenikOceniObjavoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.MatchingController",
+    "Method": "GetObjaveZaUporabnika",
+    "RelativePath": "api/Matching/objave-za-uporabnika/{uporabnikId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uporabnikId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.MatchingController",
+    "Method": "GetUporabnikiZaBand",
+    "RelativePath": "api/Matching/uporabniki-za-band/{bandId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bandId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TinderZaBendeBackend.Controllers.ObjaveController",
     "Method": "GetAll",
     "RelativePath": "api/Objave",
