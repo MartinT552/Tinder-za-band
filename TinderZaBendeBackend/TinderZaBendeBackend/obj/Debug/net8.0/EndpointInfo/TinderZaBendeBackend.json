@@ -200,19 +200,42 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Band"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Band"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Band"
+                "required": [
+                  "Ime"
+                ],
+                "type": "object",
+                "properties": {
+                  "Ime": {
+                    "type": "string"
+                  },
+                  "Opis": {
+                    "type": "string"
+                  },
+                  "Kraj_Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Slika": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Ime": {
+                  "style": "form"
+                },
+                "Opis": {
+                  "style": "form"
+                },
+                "Kraj_Id": {
+                  "style": "form"
+                },
+                "Slika": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -237,6 +260,18 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Band/moj": {
+      "get": {
+        "tags": [
+          "Band"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

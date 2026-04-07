@@ -7,6 +7,7 @@ import Navbar from "./komponenti/Navbar";
 import "./css/App.css";
 import SpremeniProfil from "./strani/SpremeniProfil";
 import Matching from "./strani/Matching";
+import CreateBand from "./strani/CreateBand";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -26,6 +27,7 @@ function App() {
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/spremeniProfil" element={<ProtectedRoute><SpremeniProfil /></ProtectedRoute>} />
           <Route path="/matching" element={<ProtectedRoute><Matching /></ProtectedRoute>} />
+          <Route path="/band" element={<ProtectedRoute><CreateBand /></ProtectedRoute>} />
         </Routes>
       </div>
     </Router>

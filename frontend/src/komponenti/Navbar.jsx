@@ -18,6 +18,7 @@ function Navbar() {
           <>
             <Link to="/profile">Profil</Link>
             <Link to="/matching">Matching</Link>
+            <Link to="/band">Band</Link>
             <button onClick={handleLogout}>Odjava</button>
           </>
         ) : (

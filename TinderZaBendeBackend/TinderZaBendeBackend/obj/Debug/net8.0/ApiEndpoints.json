@@ -116,9 +116,24 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "band",
-        "Type": "TinderZaBendeBackend.Models.Entities.Band",
-        "IsRequired": true
+        "Name": "Ime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Opis",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Kraj_Id",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Slika",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -194,6 +209,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.BandController",
+    "Method": "GetMojBand",
+    "RelativePath": "api/Band/moj",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -9,3 +9,6 @@ wwwroot\slike\bd59278a-b33d-4822-9692-30a7a2104ac5.png
 wwwroot\slike\3e7a208e-8beb-404a-bd5b-b6f5eb66cfb8.png
 wwwroot\slike\d0a0ca62-e221-4c35-a6da-784dea235beb.png
 wwwroot\slike\cf9d42ee-949d-4114-b8f5-b69ff417fa3c.png
+wwwroot\slike\7625425e-ffff-44b6-8180-636710822136.png
+wwwroot\slike\2ca5326e-aab1-469e-afc7-d27d1c0f6cf1.png
+wwwroot\slike\9ae7dcaf-7e83-409c-89e4-742d1691b690.png
