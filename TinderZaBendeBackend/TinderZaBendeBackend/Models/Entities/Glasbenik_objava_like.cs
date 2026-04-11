@@ -1,8 +1,6 @@
 namespace TinderZaBendeBackend.Models.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
-
 [Table("glasbenik_objava_like")]
 public class GlasbenikObjavaLike
 {
@@ -10,7 +8,7 @@ public class GlasbenikObjavaLike
     [Column("id")]
     public int Id { get; set; }
 
-    [Column("dolocitev")]
+    [Column("odlocitev")]  // ? popravljeno
     public required string dolocitev { get; set; }
 
     [Column("datum")]

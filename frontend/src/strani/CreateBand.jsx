@@ -9,10 +9,14 @@ export default function Band() {
   const [form, setForm] = useState({
     ime: "", opis: "", kraj_Id: "", slika: null
   });
+  const [objavaOdprta, setObjavaOdprta] = useState(false);
+  const [objavaOpis, setObjavaOpis] = useState("");
+  const [objavaMsg, setObjavaMsg] = useState("");
+
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       const [bandRes, krajiRes] = await Promise.all([
         fetch("https://localhost:7001/api/band/moj", {
@@ -21,14 +25,11 @@ useEffect(() => {
         fetch("https://localhost:7001/api/kraji")
       ]);
 
-      console.log("Band status:", bandRes.status); // ← dodaj
-      
       const krajiJson = await krajiRes.json();
       setKraji(krajiJson);
 
       if (bandRes.ok) {
         const bandJson = await bandRes.json();
-        console.log("Band data:", bandJson); // ← dodaj
         setBand(bandJson);
       }
 
@@ -73,6 +74,32 @@ useEffect(() => {
     }
   };
 
+  const handleUstvariObjavo = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("https://localhost:7001/api/band/objava", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ opis: objavaOpis })
+      });
+
+      if (response.ok) {
+        setObjavaMsg("Objava uspešno ustvarjena!");
+        setObjavaOpis("");
+        setObjavaOdprta(false);
+      } else {
+        const text = await response.text();
+        setObjavaMsg(text || "Napaka pri ustvarjanju objave.");
+      }
+    } catch (err) {
+      setObjavaMsg(`Napaka: ${err.message}`);
+    }
+  };
+
   const userKraj = kraji.find(k => k.id === band?.kraj_id);
 
   if (loading) return <div className="page center-page"><p>Loading...</p></div>;
@@ -107,6 +134,29 @@ useEffect(() => {
             <div className="profile-row">
               <span className="profile-label">Kraj</span>
               <span className="profile-value">{userKraj ? userKraj.ime : "Ni podatka"}</span>
+            </div>
+
+            {/* Objava */}
+            <div style={{ marginTop: "20px" }}>
+              <button onClick={() => setObjavaOdprta(!objavaOdprta)}>
+                {objavaOdprta ? "Zapri" : "Ustvari objavo"}
+              </button>
+
+              {objavaOdprta && (
+                <form onSubmit={handleUstvariObjavo} className="form" style={{ marginTop: "16px" }}>
+                  <textarea
+                    placeholder="Katere glasbenike iščete..."
+                    value={objavaOpis}
+                    onChange={(e) => setObjavaOpis(e.target.value)}
+                    rows={3}
+                    style={{ resize: "none" }}
+                    required
+                  />
+                  <button type="submit">Objavi</button>
+                </form>
+              )}
+
+              {objavaMsg && <p style={{ marginTop: "8px" }}>{objavaMsg}</p>}
             </div>
 
           </div>

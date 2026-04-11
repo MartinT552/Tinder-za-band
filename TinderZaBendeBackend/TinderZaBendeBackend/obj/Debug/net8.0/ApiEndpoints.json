@@ -222,6 +222,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TinderZaBendeBackend.Controllers.BandController",
+    "Method": "UstvariObjavo",
+    "RelativePath": "api/Band/objava",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "TinderZaBendeBackend.DTO.UstvariObjavoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TinderZaBendeBackend.Controllers.KrajiController",
     "Method": "GetAll",
     "RelativePath": "api/Kraji",
@@ -445,6 +461,38 @@
       {
         "Name": "dto",
         "Type": "TinderZaBendeBackend.Controllers.GlasbenikOceniObjavoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.MatchingController",
+    "Method": "GetMojiMatchiBand",
+    "RelativePath": "api/Matching/moji-matchi-band/{bandId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bandId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TinderZaBendeBackend.Controllers.MatchingController",
+    "Method": "GetMojiMatchi",
+    "RelativePath": "api/Matching/moji-matchi/{uporabnikId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uporabnikId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

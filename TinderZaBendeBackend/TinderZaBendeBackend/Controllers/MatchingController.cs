@@ -74,10 +74,16 @@ namespace TinderZaBendeBackend.Controllers
                 .Select(x => x.uporabnik_id)
                 .ToListAsync();
 
+            // Poišèi vse uporabnike ki imajo band
+            var uporabnikiZBandom = await _db.Band
+                .Select(b => b.owner_uporabnik_id)
+                .ToListAsync();
+
             var uporabniki = await _db.Uporabniki
                 .Where(u =>
                     u.kraj_id == band.kraj_id &&
-                    !ocenjeniUporabnikiIds.Contains(u.Id))
+                    !ocenjeniUporabnikiIds.Contains(u.Id) &&
+                    !uporabnikiZBandom.Contains(u.Id))  // ? izkljuèi uporabnike z bandom
                 .Select(u => new
                 {
                     id = u.Id,
@@ -156,15 +162,24 @@ namespace TinderZaBendeBackend.Controllers
         [HttpPost("band-oceni-uporabnika")]
         public async Task<IActionResult> BandOceniUporabnika([FromBody] BandOceniUporabnikaDto dto)
         {
+            // Poišèi zadnjo objavo banda
+            var zadnjaObjava = await _db.Objave
+                .Where(o => o.band_id == dto.BandId)
+                .OrderByDescending(o => o.ustvarjen)
+                .FirstOrDefaultAsync();
+
+            if (zadnjaObjava == null)
+                return BadRequest("Band nima nobene objave.");
+
             var obstaja = await _db.BendUporabnikLike
-                .AnyAsync(x => x.objava_id == dto.BandId && x.uporabnik_id == dto.UporabnikId);
+                .AnyAsync(x => x.objava_id == zadnjaObjava.Id && x.uporabnik_id == dto.UporabnikId);
 
             if (obstaja)
                 return BadRequest("Ta uporabnik je že bil ocenjen.");
 
             var zapis = new BendUporabnikLike
             {
-                objava_id = dto.BandId,
+                objava_id = zadnjaObjava.Id,  // ? objava_id, ne band_id
                 uporabnik_id = dto.UporabnikId,
                 dolocitev = dto.Dolocitev,
                 datum = DateTime.UtcNow
@@ -177,42 +192,97 @@ namespace TinderZaBendeBackend.Controllers
 
             if (dto.Dolocitev.ToLower() == "like")
             {
-                var zadnjaObjavaBanda = await _db.Objave
-                    .Where(o => o.band_id == dto.BandId)
-                    .OrderByDescending(o => o.ustvarjen)
-                    .FirstOrDefaultAsync();
+                var userLike = await _db.GlasbenikObjavaLike.AnyAsync(x =>
+                    x.uporabnik_id == dto.UporabnikId &&
+                    x.objava_id == zadnjaObjava.Id &&
+                    x.dolocitev.ToLower() == "like");
 
-                if (zadnjaObjavaBanda != null)
+                if (userLike)
                 {
-                    var userLike = await _db.GlasbenikObjavaLike.AnyAsync(x =>
-                        x.uporabnik_id == dto.UporabnikId &&
-                        x.objava_id == zadnjaObjavaBanda.Id &&
-                        x.dolocitev.ToLower() == "like");
+                    var matchObstaja = await _db.Match.AnyAsync(m =>
+                        m.uporabnik_id == dto.UporabnikId &&
+                        m.objava_id == zadnjaObjava.Id);
 
-                    if (userLike)
+                    if (!matchObstaja)
                     {
-                        var matchObstaja = await _db.Match.AnyAsync(m =>
-                            m.uporabnik_id == dto.UporabnikId &&
-                            m.objava_id == zadnjaObjavaBanda.Id);
-
-                        if (!matchObstaja)
+                        _db.Match.Add(new Match
                         {
-                            _db.Match.Add(new Match
-                            {
-                                uporabnik_id = dto.UporabnikId,
-                                objava_id = zadnjaObjavaBanda.Id,
-                                datum_matcha = DateTime.UtcNow
-                            });
+                            uporabnik_id = dto.UporabnikId,
+                            objava_id = zadnjaObjava.Id,
+                            datum_matcha = DateTime.UtcNow
+                        });
 
-                            await _db.SaveChangesAsync();
-                        }
-
-                        isMatch = true;
+                        await _db.SaveChangesAsync();
                     }
+
+                    isMatch = true;
                 }
             }
 
             return Ok(new { message = "Shranjeno.", isMatch });
+        }
+        [HttpGet("moji-matchi/{uporabnikId:int}")]
+        public async Task<IActionResult> GetMojiMatchi(int uporabnikId)
+        {
+            var matchi = await _db.Match
+                .Where(m => m.uporabnik_id == uporabnikId)
+                .Join(_db.Objave,
+                    match => match.objava_id,
+                    objava => objava.Id,
+                    (match, objava) => new { match, objava })
+                .Join(_db.Band,
+                    x => x.objava.band_id,
+                    band => band.Id,
+                    (x, band) => new { x.match, x.objava, band })
+                .Join(_db.Uporabniki,
+                    x => x.band.owner_uporabnik_id,
+                    owner => owner.Id,
+                    (x, owner) => new
+                    {
+                        datum_matcha = x.match.datum_matcha,
+                        band_id = x.band.Id,
+                        band_ime = x.band.ime,
+                        band_opis = x.band.opis,
+                        band_slike = x.band.slike,
+                        owner_ime = owner.Ime,
+                        owner_email = owner.email,
+                        owner_telefon = owner.telefon,
+                        owner_instrument = owner.instrument,
+                        owner_slika = owner.slika
+                    })
+                .ToListAsync();
+
+            return Ok(matchi);
+        }
+
+        [HttpGet("moji-matchi-band/{bandId:int}")]
+        public async Task<IActionResult> GetMojiMatchiBand(int bandId)
+        {
+            var objaveIds = await _db.Objave
+                .Where(o => o.band_id == bandId)
+                .Select(o => o.Id)
+                .ToListAsync();
+
+            var matchi = await _db.Match
+                .Where(m => objaveIds.Contains(m.objava_id))
+                .Join(_db.Uporabniki,
+                    match => match.uporabnik_id,
+                    user => user.Id,
+                    (match, user) => new
+                    {
+                        datum_matcha = match.datum_matcha,
+                        uporabnik_id = user.Id,
+                        ime = user.Ime,
+                        instrument = user.instrument,
+                        zanr = user.zanr,
+                        bio = user.bio,
+                        slika = user.slika,
+                        telefon = user.telefon,
+                        email = user.email
+                    })
+                .ToListAsync();
+
+            return Ok(matchi);
         }
     }
 

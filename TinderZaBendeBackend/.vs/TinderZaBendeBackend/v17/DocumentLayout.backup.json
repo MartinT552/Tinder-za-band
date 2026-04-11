@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\controllers\\matchingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\controllers\\matchingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\controllers\\matchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\controllers\\matchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\controllers\\bandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\controllers\\bandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\dto\\ustvariobjavodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\dto\\ustvariobjavodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\models\\entities\\bend_uporabnik_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\models\\entities\\bend_uporabnik_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\models\\entities\\glasbenik_objava_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\models\\entities\\glasbenik_objava_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\dto\\banddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,24 +74,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UstvariObjavoDTO.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs",
+              "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs",
+              "RelativeToolTip": "TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T21:18:42.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MatchController.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\MatchController.cs",
+              "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\MatchController.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\MatchController.cs",
+              "RelativeToolTip": "TinderZaBendeBackend\\Controllers\\MatchController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T21:10:51.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Glasbenik_objava_like.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs",
+              "RelativeDocumentMoniker": "TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs",
+              "RelativeToolTip": "TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T21:07:01.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Bend_Uporabnik_like.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Bend_Uporabnik_like.cs",
+              "RelativeDocumentMoniker": "TinderZaBendeBackend\\Models\\Entities\\Bend_Uporabnik_like.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Bend_Uporabnik_like.cs",
+              "RelativeToolTip": "TinderZaBendeBackend\\Models\\Entities\\Bend_Uporabnik_like.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T21:02:47.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MatchingController.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\MatchingController.cs",
+              "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\MatchingController.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\MatchingController.cs",
+              "RelativeToolTip": "TinderZaBendeBackend\\Controllers\\MatchingController.cs",
+              "ViewState": "AgIAANYAAAAAAAAAAAAkwPQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T20:54:44.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BandController.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\BandController.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\BandController.cs",
               "ToolTip": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\BandController.cs",
               "RelativeToolTip": "TinderZaBendeBackend\\Controllers\\BandController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAQwCkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-07T17:15:18.702Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "BandDTO.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\BandDTO.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\BandDTO.cs",
@@ -79,12 +164,11 @@
               "RelativeToolTip": "TinderZaBendeBackend\\DTO\\BandDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:05:11.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-07T17:05:11.219Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Band.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Band.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Models\\Entities\\Band.cs",
@@ -92,12 +176,11 @@
               "RelativeToolTip": "TinderZaBendeBackend\\Models\\Entities\\Band.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T15:03:51.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-06T15:03:51.156Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Program.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Program.cs",
@@ -109,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "LoginDTO.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\LoginDTO.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\LoginDTO.cs",
@@ -121,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "RegisterDTO.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\RegisterDTO.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\RegisterDTO.cs",
@@ -129,12 +212,11 @@
               "RelativeToolTip": "TinderZaBendeBackend\\DTO\\RegisterDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T11:41:07.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T11:41:07.296Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "UpdateUserDto.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\UpdateUserDto.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\UpdateUserDto.cs",
@@ -142,12 +224,11 @@
               "RelativeToolTip": "TinderZaBendeBackend\\DTO\\UpdateUserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T10:51:47.155Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T10:51:47.155Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "UporabnikiController.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\UporabnikiController.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\UporabnikiController.cs",
@@ -159,7 +240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\AuthController.cs",
@@ -171,7 +252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "Uporabnik.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Uporabnik.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Models\\Entities\\Uporabnik.cs",
@@ -179,12 +260,11 @@
               "RelativeToolTip": "TinderZaBendeBackend\\Models\\Entities\\Uporabnik.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAIwCMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T10:29:19.045Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-04T10:29:19.045Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\WeatherForecast.cs",

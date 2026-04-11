@@ -9,7 +9,7 @@ public class BendUporabnikLike
     [Column("id")]
     public int Id { get; set; }
 
-    [Column("dolocitev")]
+    [Column("odlocitev")]  // ? preveri pravo ime
     public required string dolocitev { get; set; }
 
     [Column("datum")]

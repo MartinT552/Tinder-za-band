@@ -36,6 +36,33 @@ namespace TinderZaBendeBackend.Controllers
             return band is null ? NotFound() : Ok(band);
         }
 
+        [Authorize]
+        [HttpPost("objava")]
+        public async Task<IActionResult> UstvariObjavo([FromBody] UstvariObjavoDTO dto)
+        {
+            var sub = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                      ?? User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+            if (string.IsNullOrWhiteSpace(sub) || !int.TryParse(sub, out var userId))
+                return Unauthorized();
+
+            var band = await _db.Band.FirstOrDefaultAsync(b => b.owner_uporabnik_id == userId);
+            if (band == null)
+                return NotFound("Nimaš banda.");
+
+            var objava = new Objava
+            {
+                opis = dto.Opis,
+                aktiven = true,
+                ustvarjen = DateTime.UtcNow,
+                band_id = band.Id
+            };
+
+            _db.Objave.Add(objava);
+            await _db.SaveChangesAsync();
+
+            return Ok(objava);
+        }
+
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Band>> GetById(int id)
         {
