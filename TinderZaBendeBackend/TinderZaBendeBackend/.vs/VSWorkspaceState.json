@@ -9,6 +9,6 @@
     "\\Models\\Entities",
     "\\Properties"
   ],
-  "SelectedNode": "\\Controllers\\MatchingController.cs",
+  "SelectedNode": "\\DTO\\UstvariObjavoDTO.cs",
   "PreviewInSolutionExplorer": false
 }
