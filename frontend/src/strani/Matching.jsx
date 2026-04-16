@@ -4,8 +4,9 @@ export default function Matching() {
   const [mode, setMode] = useState(null);
   const [bandId, setBandId] = useState(null);
   const [cards, setCards] = useState([]);
-  const [matchi, setMatchi] = useState([]);
+  const [zainteresirani, setZainteresirani] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingInterested, setLoadingInterested] = useState(false);
   const [message, setMessage] = useState("");
 
   const token = localStorage.getItem("token");
@@ -36,7 +37,10 @@ export default function Matching() {
   }, []);
 
   useEffect(() => {
-    if (mode !== null) fetchCards();
+    if (mode !== null) {
+      fetchCards();
+      fetchZainteresirani();
+    }
   }, [mode]);
 
   const fetchCards = async () => {
@@ -57,7 +61,10 @@ export default function Matching() {
         url = `https://localhost:7001/api/matching/uporabniki-za-band/${bandId}`;
       }
 
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      
       const text = await response.text();
       let data;
       try { data = JSON.parse(text); } catch { data = text; }
@@ -70,18 +77,6 @@ export default function Matching() {
       }
 
       setCards(data);
-
-      // Naloži matche
-      const matchUrl = mode === "glasbenik"
-        ? `https://localhost:7001/api/matching/moji-matchi/${userId}`
-        : `https://localhost:7001/api/matching/moji-matchi-band/${bandId}`;
-
-      const matchRes = await fetch(matchUrl);
-      if (matchRes.ok) {
-        const matchData = await matchRes.json();
-        setMatchi(matchData);
-      }
-
     } catch (error) {
       setMessage("Napaka pri povezavi z backendom.");
       setCards([]);
@@ -90,14 +85,35 @@ export default function Matching() {
     }
   };
 
-const handleDecision = async (item, dolocitev) => {
+  const fetchZainteresirani = async () => {
+    setLoadingInterested(true);
+    try {
+      let url = "";
+      if (mode === "glasbenik") {
+        url = `https://localhost:7001/api/matching/zainteresirani-bandi/${userId}`;
+      } else {
+        url = `https://localhost:7001/api/matching/zainteresirani-uporabniki/${bandId}`;
+      }
+
+      const response = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setZainteresirani(data);
+      }
+    } catch (error) {
+      console.error("Napaka pri nalaganju zainteresiranih:", error);
+    } finally {
+      setLoadingInterested(false);
+    }
+  };
+
+  const handleDecision = async (item, dolocitev) => {
     try {
       let url = "";
       let body = {};
-
-      console.log("item:", item);
-      console.log("mode:", mode);
-      console.log("bandId:", bandId);
 
       if (mode === "glasbenik") {
         url = "https://localhost:7001/api/matching/glasbenik-oceni-objavo";
@@ -107,11 +123,12 @@ const handleDecision = async (item, dolocitev) => {
         body = { bandId, uporabnikId: item.id, dolocitev };
       }
 
-      console.log("body:", body);
-
       const response = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify(body)
       });
 
@@ -125,19 +142,105 @@ const handleDecision = async (item, dolocitev) => {
       }
 
       if (data.isMatch) {
-        alert("MATCH! 🎸");
-        const matchUrl = mode === "glasbenik"
-          ? `https://localhost:7001/api/matching/moji-matchi/${userId}`
-          : `https://localhost:7001/api/matching/moji-matchi-band/${bandId}`;
-
-        const matchRes = await fetch(matchUrl);
-        if (matchRes.ok) {
-          const matchData = await matchRes.json();
-          setMatchi(matchData);
-        }
+        alert("MATCH! 🎸 Pojdi na stran Matches za kontakt podatke!");
       }
 
       setCards((prev) => prev.filter((x) => x.id !== item.id));
+      fetchZainteresirani();
+      
+      setTimeout(() => {
+        if (cards.length <= 1) {
+          fetchCards();
+        }
+      }, 500);
+      
+    } catch (error) {
+      alert("Napaka pri povezavi z backendom.");
+    }
+  };
+
+  const handleLikeFromInterested = async (item, dolocitev) => {
+    try {
+      let url = "";
+      let body = {};
+
+      if (mode === "glasbenik") {
+        url = "https://localhost:7001/api/matching/glasbenik-oceni-objavo";
+        body = { uporabnikId: userId, objavaId: item.objava_id, dolocitev };
+      } else {
+        url = "https://localhost:7001/api/matching/band-oceni-uporabnika";
+        body = { bandId, uporabnikId: item.uporabnik_id, dolocitev };
+      }
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+      });
+
+      const text = await response.text();
+      let data;
+      try { data = JSON.parse(text); } catch { data = text; }
+
+      if (!response.ok) {
+        alert(typeof data === "string" ? data : "Napaka pri shranjevanju.");
+        return;
+      }
+
+      if (data.isMatch) {
+        alert("MATCH! 🎸 Pojdi na stran Matches za kontakt podatke!");
+      }
+
+      if (mode === "glasbenik") {
+        setZainteresirani((prev) => prev.filter((x) => x.objava_id !== item.objava_id));
+      } else {
+        setZainteresirani((prev) => prev.filter((x) => x.uporabnik_id !== item.uporabnik_id));
+      }
+      
+      fetchCards();
+      
+    } catch (error) {
+      alert("Napaka pri povezavi z backendom.");
+    }
+  };
+
+  const handleDislikeFromInterested = async (item, dolocitev) => {
+    try {
+      let url = "";
+      let body = {};
+
+      if (mode === "glasbenik") {
+        url = "https://localhost:7001/api/matching/glasbenik-oceni-objavo";
+        body = { uporabnikId: userId, objavaId: item.objava_id, dolocitev: "dislike" };
+      } else {
+        url = "https://localhost:7001/api/matching/band-oceni-uporabnika";
+        body = { bandId, uporabnikId: item.uporabnik_id, dolocitev: "dislike" };
+      }
+
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        alert(text);
+        return;
+      }
+
+      if (mode === "glasbenik") {
+        setZainteresirani((prev) => prev.filter((x) => x.objava_id !== item.objava_id));
+      } else {
+        setZainteresirani((prev) => prev.filter((x) => x.uporabnik_id !== item.uporabnik_id));
+      }
+      
     } catch (error) {
       alert("Napaka pri povezavi z backendom.");
     }
@@ -145,127 +248,168 @@ const handleDecision = async (item, dolocitev) => {
 
   return (
     <div className="page">
-      <div className="matching-wrapper">
-        <div className="matching-header">
-          <h2 className="matching-title">Matching</h2>
-          <p style={{ color: "var(--muted)", marginTop: "4px" }}>
-            {mode === "band" ? "Iščeš glasbenike za tvoj band" : "Iščeš band za sebe"}
+      <div className="matching-wrapper" style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        
+        {/* Glavne kartice za ocenjevanje */}
+        <div className="hero-card" style={{ maxWidth: "900px", width: "100%", margin: "0 auto 40px auto" }}>
+          <h1>
+            {mode === "band" ? "Poišči glasbenike za tvoj band" : "Najdi svojo glasbeno bando"}
+          </h1>
+          <p style={{ marginBottom: "32px" }}>
+            {mode === "band" 
+              ? "Oceni glasbenike v tvojem kraju in najdi popolne člane za svojo skupino"
+              : "Poveži se z glasbeniki, poišči člane za svojo skupino in ustvari nove glasbene zgodbe"}
           </p>
+
+          {loading ? (
+            <p>Nalaganje kartic...</p>
+          ) : message ? (
+            <div className="form-card" style={{ marginTop: "20px" }}>
+              <p>{message}</p>
+              <button 
+                onClick={fetchCards} 
+                style={{ marginTop: "16px", padding: "10px 20px", cursor: "pointer" }}
+              >
+                Poskusi znova
+              </button>
+            </div>
+          ) : cards.length === 0 ? (
+            <div className="form-card" style={{ marginTop: "20px" }}>
+              <p>Ni več kartic za prikaz. Pridi kasneje nazaj!</p>
+              <button 
+                onClick={fetchCards} 
+                style={{ marginTop: "16px", padding: "10px 20px", cursor: "pointer" }}
+              >
+                Osveži
+              </button>
+            </div>
+          ) : (
+            <div className="matching-grid" style={{ marginTop: "32px" }}>
+              {mode === "glasbenik" && cards.map((item) => (
+                <div className="match-card" key={item.id}>
+                  {item.band_slike && (
+                    <img
+                      src={`https://localhost:7001${item.band_slike}`}
+                      alt="Band slika"
+                      className="match-image"
+                    />
+                  )}
+                  <h3>{item.band_ime}</h3>
+                  <p><strong>Opis benda:</strong> {item.band_opis || "Ni opisa."}</p>
+                  <p><strong>Kaj iščejo:</strong> {item.opis || "Ni opisa."}</p>
+                  <div className="match-actions">
+                    <button className="dislike-btn" onClick={() => handleDecision(item, "dislike")}>❌ Ne</button>
+                    <button className="like-btn" onClick={() => handleDecision(item, "like")}>❤️ Like</button>
+                  </div>
+                </div>
+              ))}
+
+              {mode === "band" && cards.map((item) => (
+                <div className="match-card" key={item.id}>
+                  {item.slika && (
+                    <img
+                      src={`https://localhost:7001${item.slika}`}
+                      alt="Profilna slika"
+                      className="match-image"
+                      style={{ width: "100px", height: "100px", borderRadius: "50%", margin: "0 auto 16px auto", display: "block" }}
+                    />
+                  )}
+                  <h3>{item.ime}</h3>
+                  <p><strong>Instrument:</strong> {item.instrument || "Ni podatka."}</p>
+                  <p><strong>Bio:</strong> {item.bio || "Ni opisa."}</p>
+                  <div className="match-actions">
+                    <button className="dislike-btn" onClick={() => handleDecision(item, "dislike")}>❌ Ne</button>
+                    <button className="like-btn" onClick={() => handleDecision(item, "like")}>❤️ Like</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
-        {loading ? (
-          <div className="form-card"><p>Nalaganje...</p></div>
-        ) : message ? (
-          <div className="form-card"><p>{message}</p></div>
-        ) : (
-          <>
-            {/* Kartice za ocenjevanje */}
-            {cards.length === 0 ? (
-              <div className="form-card"><p>Ni več kartic za prikaz.</p></div>
-            ) : (
-              <div className="matching-grid">
-                {mode === "glasbenik" && cards.map((item) => (
-                  <div className="match-card" key={item.id}>
-                    {item.band_slike && (
-                      <img
-                        src={`https://localhost:7001${item.band_slike}`}
-                        alt="Band slika"
-                        style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "8px", marginBottom: "12px" }}
-                      />
-                    )}
-                    <h3>{item.band_ime}</h3>
-                    <p><strong>Opis objave:</strong> {item.opis || "Ni opisa."}</p>
-                    <p><strong>Opis banda:</strong> {item.band_opis || "Ni opisa."}</p>
-                    <div className="match-actions">
-                      <button className="dislike-btn" onClick={() => handleDecision(item, "dislike")}>Dislike</button>
-                      <button className="like-btn" onClick={() => handleDecision(item, "like")}>Like</button>
-                    </div>
+        {/* Sekcija: Zainteresirani */}
+        {!loadingInterested && zainteresirani.length > 0 && (
+          <div style={{ marginTop: "40px" }}>
+            <h2 style={{ textAlign: "center", marginBottom: "24px", color: "var(--accent)" }}>
+              {mode === "glasbenik" ? "🎸 Bendi, ki so zainteresirani zate" : "🎸 Glasbeniki, ki so zainteresirani za tvoj band"}
+            </h2>
+            <p style={{ textAlign: "center", marginBottom: "24px", color: "var(--muted)" }}>
+              {mode === "glasbenik" 
+                ? "Ti bendi so ti dali like. Klikni like, da ustvariš match!" 
+                : "Ti glasbeniki so dali like tvojemu bandu. Klikni like, da ustvariš match!"}
+            </p>
+            <div className="matching-grid">
+              {mode === "glasbenik" && zainteresirani.map((item, index) => (
+                <div className="match-card" key={index} style={{ borderColor: "var(--accent)", borderWidth: "2px" }}>
+                  {item.band_slike && (
+                    <img
+                      src={`https://localhost:7001${item.band_slike}`}
+                      alt="Band slika"
+                      className="match-image"
+                    />
+                  )}
+                  <h3>{item.band_ime}</h3>
+                  <p><strong>Opis benda:</strong> {item.band_opis || "Ni opisa."}</p>
+                  <p><strong>Kaj iščejo:</strong> {item.objava_opis || "Ni opisa."}</p>
+                  <p style={{ fontSize: "12px", color: "var(--muted)", marginTop: "8px" }}>
+                    Like dobil: {new Date(item.like_datum).toLocaleDateString()}
+                  </p>
+                  <div className="match-actions">
+                    <button 
+                      className="dislike-btn" 
+                      onClick={() => handleDislikeFromInterested(item, "dislike")}
+                    >
+                      ❌ Zavrni
+                    </button>
+                    <button 
+                      className="like-btn" 
+                      onClick={() => handleLikeFromInterested(item, "like")}
+                    >
+                      ❤️ Like nazaj
+                    </button>
                   </div>
-                ))}
-
-                {mode === "band" && cards.map((item) => (
-                  <div className="match-card" key={item.id}>
-                    {item.slika && (
-                      <img
-                        src={`https://localhost:7001${item.slika}`}
-                        alt="Profilna slika"
-                        style={{ width: "80px", height: "80px", borderRadius: "50%", objectFit: "cover", marginBottom: "12px" }}
-                      />
-                    )}
-                    <h3>{item.ime}</h3>
-                    <p><strong>Instrument:</strong> {item.instrument || "Ni podatka."}</p>
-                    <p><strong>Žanr:</strong> {item.zanr || "Ni podatka."}</p>
-                    <p><strong>Bio:</strong> {item.bio || "Ni opisa."}</p>
-                    <div className="match-actions">
-                      <button className="dislike-btn" onClick={() => handleDecision(item, "dislike")}>Dislike</button>
-                      <button className="like-btn" onClick={() => handleDecision(item, "like")}>Like</button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Matchi */}
-            {matchi.length > 0 && (
-              <div style={{ marginTop: "40px" }}>
-                <h3 style={{ color: "var(--text)", marginBottom: "16px" }}>Moji Matchi 🎸</h3>
-                <div className="matching-grid">
-                  {mode === "glasbenik" && matchi.map((m, i) => (
-  <div className="match-card" key={i} style={{ borderColor: "var(--accent)" }}>
-    {m.band_slike && (
-      <img
-        src={`https://localhost:7001${m.band_slike}`}
-        alt="Band slika"
-        style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "8px", marginBottom: "12px" }}
-      />
-    )}
-    <h3>{m.band_ime}</h3>
-    <p>{m.band_opis || "Ni opisa."}</p>
-
-    <hr style={{ borderColor: "rgba(255,255,255,0.1)", margin: "12px 0" }} />
-
-    <p style={{ fontWeight: "600", marginBottom: "6px" }}>Kontakt:</p>
-    {m.owner_slika && (
-      <img
-        src={`https://localhost:7001${m.owner_slika}`}
-        alt="Owner slika"
-        style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover", marginBottom: "8px" }}
-      />
-    )}
-    <p><strong>Ime:</strong> {m.owner_ime}</p>
-    <p><strong>Email:</strong> {m.owner_email}</p>
-    <p><strong>Telefon:</strong> {m.owner_telefon}</p>
-    <p><strong>Instrument:</strong> {m.owner_instrument}</p>
-
-    <p style={{ color: "var(--muted)", fontSize: "12px", marginTop: "8px" }}>
-      Match: {new Date(m.datum_matcha).toLocaleDateString()}
-    </p>
-  </div>
-))}
-
-                  {mode === "band" && matchi.map((m, i) => (
-                    <div className="match-card" key={i} style={{ borderColor: "var(--accent)" }}>
-                      {m.slika && (
-                        <img
-                          src={`https://localhost:7001${m.slika}`}
-                          alt="Profilna slika"
-                          style={{ width: "80px", height: "80px", borderRadius: "50%", objectFit: "cover", marginBottom: "12px" }}
-                        />
-                      )}
-                      <h3>{m.ime}</h3>
-                      <p><strong>Instrument:</strong> {m.instrument || "Ni podatka."}</p>
-                      <p><strong>Žanr:</strong> {m.zanr || "Ni podatka."}</p>
-                      <p><strong>Email:</strong> {m.email}</p>
-                      <p><strong>Telefon:</strong> {m.telefon}</p>
-                      <p style={{ color: "var(--muted)", fontSize: "12px" }}>
-                        Match: {new Date(m.datum_matcha).toLocaleDateString()}
-                      </p>
-                    </div>
-                  ))}
                 </div>
-              </div>
-            )}
-          </>
+              ))}
+
+              {mode === "band" && zainteresirani.map((item, index) => (
+                <div className="match-card" key={index} style={{ borderColor: "var(--accent)", borderWidth: "2px" }}>
+                  {item.slika && (
+                    <img
+                      src={`https://localhost:7001${item.slika}`}
+                      alt="Profilna slika"
+                      style={{ width: "100px", height: "100px", borderRadius: "50%", objectFit: "cover", margin: "0 auto 16px auto", display: "block" }}
+                    />
+                  )}
+                  <h3>{item.ime}</h3>
+                  <p><strong>Instrument:</strong> {item.instrument || "Ni podatka."}</p>
+                  <p><strong>Bio:</strong> {item.bio || "Ni opisa."}</p>
+                  <p style={{ fontSize: "12px", color: "var(--muted)", marginTop: "8px" }}>
+                    Like dobil: {new Date(item.like_datum).toLocaleDateString()}
+                  </p>
+                  <div className="match-actions">
+                    <button 
+                      className="dislike-btn" 
+                      onClick={() => handleDislikeFromInterested(item, "dislike")}
+                    >
+                      ❌ Zavrni
+                    </button>
+                    <button 
+                      className="like-btn" 
+                      onClick={() => handleLikeFromInterested(item, "like")}
+                    >
+                      ❤️ Like nazaj
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {loadingInterested && (
+          <div style={{ textAlign: "center", marginTop: "40px" }}>
+            <p>Nalaganje zainteresiranih...</p>
+          </div>
         )}
       </div>
     </div>

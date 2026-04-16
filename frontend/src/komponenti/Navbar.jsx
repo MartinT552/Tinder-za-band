@@ -6,6 +6,7 @@ function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
@@ -13,11 +14,11 @@ function Navbar() {
     <nav className="navbar">
       <h2 className="logo">TinderZaBende</h2>
       <div className="nav-links">
-        <Link to="/">Domov</Link>
         {token ? (
           <>
+            <Link to="/">Domov</Link>
             <Link to="/profile">Profil</Link>
-            <Link to="/matching">Matching</Link>
+            <Link to="/matches">Matches</Link>
             <Link to="/band">Band</Link>
             <button onClick={handleLogout}>Odjava</button>
           </>

@@ -8,7 +8,7 @@ export default function Register() {
     instrument: "",
     kraj_Id: "",
     password: "",
-    slika: null
+    slika: nullA
   });
 
   const handleFileChange = (e) => {

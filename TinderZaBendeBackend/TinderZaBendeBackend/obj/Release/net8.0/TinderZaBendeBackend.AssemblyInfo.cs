@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TinderZaBendeBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f37cc47fb1ddbdfe9794dedaf3357040caa921bf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81be3f08309dc1e30aa7dfcc2cb02e53ce12b115")]
 [assembly: System.Reflection.AssemblyProductAttribute("TinderZaBendeBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TinderZaBendeBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

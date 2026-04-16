@@ -32,6 +32,13 @@ namespace TinderZaBendeBackend.Controllers
                 .Select(x => x.objava_id)
                 .ToListAsync();
 
+            var matchedObjaveIds = await _db.Match
+                .Where(m => m.uporabnik_id == uporabnikId)
+                .Select(m => m.objava_id)
+                .ToListAsync();
+
+            var vseIzkljuceneIds = ocenjeneObjaveIds.Union(matchedObjaveIds).ToList();
+
             var objave = await _db.Objave
                 .Join(_db.Band,
                     objava => objava.band_id,
@@ -40,7 +47,7 @@ namespace TinderZaBendeBackend.Controllers
                 .Where(x =>
                     x.objava.aktiven &&
                     x.band.kraj_id == uporabnik.kraj_id &&
-                    !ocenjeneObjaveIds.Contains(x.objava.Id))
+                    !vseIzkljuceneIds.Contains(x.objava.Id))
                 .Select(x => new
                 {
                     id = x.objava.Id,
@@ -69,12 +76,26 @@ namespace TinderZaBendeBackend.Controllers
             if (band.kraj_id == null)
                 return BadRequest("Band nima nastavljenega kraja.");
 
+            var zadnjaObjava = await _db.Objave
+                .Where(o => o.band_id == bandId)
+                .OrderByDescending(o => o.ustvarjen)
+                .FirstOrDefaultAsync();
+
+            if (zadnjaObjava == null)
+                return BadRequest("Band nima nobene objave.");
+
             var ocenjeniUporabnikiIds = await _db.BendUporabnikLike
-                .Where(x => x.objava_id == bandId)
+                .Where(x => x.objava_id == zadnjaObjava.Id)
                 .Select(x => x.uporabnik_id)
                 .ToListAsync();
 
-            // Poišèi vse uporabnike ki imajo band
+            var matchedUporabnikiIds = await _db.Match
+                .Where(m => m.objava_id == zadnjaObjava.Id)
+                .Select(m => m.uporabnik_id)
+                .ToListAsync();
+
+            var vseIzkljuceneIds = ocenjeniUporabnikiIds.Union(matchedUporabnikiIds).ToList();
+
             var uporabnikiZBandom = await _db.Band
                 .Select(b => b.owner_uporabnik_id)
                 .ToListAsync();
@@ -82,8 +103,8 @@ namespace TinderZaBendeBackend.Controllers
             var uporabniki = await _db.Uporabniki
                 .Where(u =>
                     u.kraj_id == band.kraj_id &&
-                    !ocenjeniUporabnikiIds.Contains(u.Id) &&
-                    !uporabnikiZBandom.Contains(u.Id))  // ? izkljuèi uporabnike z bandom
+                    !vseIzkljuceneIds.Contains(u.Id) &&
+                    !uporabnikiZBandom.Contains(u.Id))
                 .Select(u => new
                 {
                     id = u.Id,
@@ -101,6 +122,119 @@ namespace TinderZaBendeBackend.Controllers
             return Ok(uporabniki);
         }
 
+        [HttpGet("zainteresirani-bandi/{uporabnikId:int}")]
+        public async Task<IActionResult> GetZainteresiraniBandi(int uporabnikId)
+        {
+            try
+            {
+                var uporabnik = await _db.Uporabniki.FirstOrDefaultAsync(u => u.Id == uporabnikId);
+                if (uporabnik == null)
+                    return NotFound("Uporabnik ne obstaja.");
+
+                var ocenjeneObjaveIds = await _db.GlasbenikObjavaLike
+                    .Where(x => x.uporabnik_id == uporabnikId)
+                    .Select(x => x.objava_id)
+                    .ToListAsync();
+
+                var matchedObjaveIds = await _db.Match
+                    .Where(m => m.uporabnik_id == uporabnikId)
+                    .Select(m => m.objava_id)
+                    .ToListAsync();
+
+                var zainteresirani = await _db.BendUporabnikLike
+                    .Where(x => x.uporabnik_id == uporabnikId && x.dolocitev.ToLower() == "like")
+                    .Where(x => !ocenjeneObjaveIds.Contains(x.objava_id))
+                    .Where(x => !matchedObjaveIds.Contains(x.objava_id))
+                    .Join(_db.Objave,
+                        like => like.objava_id,
+                        objava => objava.Id,
+                        (like, objava) => new { like, objava })
+                    .Join(_db.Band,
+                        x => x.objava.band_id,
+                        band => band.Id,
+                        (x, band) => new { x.like, x.objava, band })
+                    .Join(_db.Uporabniki,
+                        x => x.band.owner_uporabnik_id,
+                        owner => owner.Id,
+                        (x, owner) => new
+                        {
+                            band_id = x.band.Id,
+                            band_ime = x.band.ime,
+                            band_opis = x.band.opis,
+                            band_slike = x.band.slike,
+                            objava_id = x.objava.Id,
+                            objava_opis = x.objava.opis,
+                            owner_ime = owner.Ime,
+                            owner_email = owner.email,
+                            owner_telefon = owner.telefon,
+                            like_datum = x.like.datum
+                        })
+                    .ToListAsync();
+
+                return Ok(zainteresirani);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Napaka: {ex.Message}");
+            }
+        }
+
+        [HttpGet("zainteresirani-uporabniki/{bandId:int}")]
+        public async Task<IActionResult> GetZainteresiraniUporabniki(int bandId)
+        {
+            try
+            {
+                var band = await _db.Band.FirstOrDefaultAsync(b => b.Id == bandId);
+                if (band == null)
+                    return NotFound("Band ne obstaja.");
+
+                var zadnjaObjava = await _db.Objave
+                    .Where(o => o.band_id == bandId)
+                    .OrderByDescending(o => o.ustvarjen)
+                    .FirstOrDefaultAsync();
+
+                if (zadnjaObjava == null)
+                    return Ok(new List<object>());
+
+                var ocenjeniUporabnikiIds = await _db.BendUporabnikLike
+                    .Where(x => x.objava_id == zadnjaObjava.Id)
+                    .Select(x => x.uporabnik_id)
+                    .ToListAsync();
+
+                var matchedUporabnikiIds = await _db.Match
+                    .Where(m => m.objava_id == zadnjaObjava.Id)
+                    .Select(m => m.uporabnik_id)
+                    .ToListAsync();
+
+                var zainteresirani = await _db.GlasbenikObjavaLike
+                    .Where(x => x.objava_id == zadnjaObjava.Id && x.dolocitev.ToLower() == "like")
+                    .Where(x => !ocenjeniUporabnikiIds.Contains(x.uporabnik_id))
+                    .Where(x => !matchedUporabnikiIds.Contains(x.uporabnik_id))
+                    .Join(_db.Uporabniki,
+                        like => like.uporabnik_id,
+                        user => user.Id,
+                        (like, user) => new
+                        {
+                            uporabnik_id = user.Id,
+                            ime = user.Ime,
+                            instrument = user.instrument,
+                            bio = user.bio,
+                            zanr = user.zanr,
+                            slika = user.slika,
+                            email = user.email,
+                            telefon = user.telefon,
+                            like_datum = like.datum
+                        })
+                    .ToListAsync();
+
+                return Ok(zainteresirani);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Napaka: {ex.Message}");
+            }
+        }
+
         [HttpPost("glasbenik-oceni-objavo")]
         public async Task<IActionResult> GlasbenikOceniObjavo([FromBody] GlasbenikOceniObjavoDto dto)
         {
@@ -109,6 +243,12 @@ namespace TinderZaBendeBackend.Controllers
 
             if (obstaja)
                 return BadRequest("Ta objava je že bila ocenjena.");
+
+            var matchObstaja = await _db.Match
+                .AnyAsync(m => m.uporabnik_id == dto.UporabnikId && m.objava_id == dto.ObjavaId);
+
+            if (matchObstaja)
+                return BadRequest("Z tem bendom že imaš match.");
 
             var objava = await _db.Objave.FirstOrDefaultAsync(o => o.Id == dto.ObjavaId);
             if (objava == null)
@@ -130,17 +270,15 @@ namespace TinderZaBendeBackend.Controllers
             if (dto.Dolocitev.ToLower() == "like")
             {
                 var bandLike = await _db.BendUporabnikLike.AnyAsync(x =>
-                    x.objava_id == objava.band_id &&
+                    x.objava_id == dto.ObjavaId &&
                     x.uporabnik_id == dto.UporabnikId &&
                     x.dolocitev.ToLower() == "like");
 
                 if (bandLike)
                 {
-                    var matchObstaja = await _db.Match.AnyAsync(m =>
+                    if (!await _db.Match.AnyAsync(m =>
                         m.uporabnik_id == dto.UporabnikId &&
-                        m.objava_id == dto.ObjavaId);
-
-                    if (!matchObstaja)
+                        m.objava_id == dto.ObjavaId))
                     {
                         _db.Match.Add(new Match
                         {
@@ -150,9 +288,8 @@ namespace TinderZaBendeBackend.Controllers
                         });
 
                         await _db.SaveChangesAsync();
+                        isMatch = true;
                     }
-
-                    isMatch = true;
                 }
             }
 
@@ -162,7 +299,6 @@ namespace TinderZaBendeBackend.Controllers
         [HttpPost("band-oceni-uporabnika")]
         public async Task<IActionResult> BandOceniUporabnika([FromBody] BandOceniUporabnikaDto dto)
         {
-            // Poišèi zadnjo objavo banda
             var zadnjaObjava = await _db.Objave
                 .Where(o => o.band_id == dto.BandId)
                 .OrderByDescending(o => o.ustvarjen)
@@ -177,9 +313,15 @@ namespace TinderZaBendeBackend.Controllers
             if (obstaja)
                 return BadRequest("Ta uporabnik je že bil ocenjen.");
 
+            var matchObstaja = await _db.Match
+                .AnyAsync(m => m.uporabnik_id == dto.UporabnikId && m.objava_id == zadnjaObjava.Id);
+
+            if (matchObstaja)
+                return BadRequest("S tem uporabnikom že imaš match.");
+
             var zapis = new BendUporabnikLike
             {
-                objava_id = zadnjaObjava.Id,  // ? objava_id, ne band_id
+                objava_id = zadnjaObjava.Id,
                 uporabnik_id = dto.UporabnikId,
                 dolocitev = dto.Dolocitev,
                 datum = DateTime.UtcNow
@@ -199,11 +341,9 @@ namespace TinderZaBendeBackend.Controllers
 
                 if (userLike)
                 {
-                    var matchObstaja = await _db.Match.AnyAsync(m =>
+                    if (!await _db.Match.AnyAsync(m =>
                         m.uporabnik_id == dto.UporabnikId &&
-                        m.objava_id == zadnjaObjava.Id);
-
-                    if (!matchObstaja)
+                        m.objava_id == zadnjaObjava.Id))
                     {
                         _db.Match.Add(new Match
                         {
@@ -213,14 +353,14 @@ namespace TinderZaBendeBackend.Controllers
                         });
 
                         await _db.SaveChangesAsync();
+                        isMatch = true;
                     }
-
-                    isMatch = true;
                 }
             }
 
             return Ok(new { message = "Shranjeno.", isMatch });
         }
+
         [HttpGet("moji-matchi/{uporabnikId:int}")]
         public async Task<IActionResult> GetMojiMatchi(int uporabnikId)
         {
@@ -248,7 +388,8 @@ namespace TinderZaBendeBackend.Controllers
                         owner_email = owner.email,
                         owner_telefon = owner.telefon,
                         owner_instrument = owner.instrument,
-                        owner_slika = owner.slika
+                        owner_slika = owner.slika,
+                        band_kraj_id = x.band.kraj_id
                     })
                 .ToListAsync();
 
@@ -278,11 +419,83 @@ namespace TinderZaBendeBackend.Controllers
                         bio = user.bio,
                         slika = user.slika,
                         telefon = user.telefon,
-                        email = user.email
+                        email = user.email,
+                        kraj_id = user.kraj_id
                     })
                 .ToListAsync();
 
             return Ok(matchi);
+        }
+
+        [HttpGet("vsi-matchi/{uporabnikId:int}")]
+        public async Task<IActionResult> GetAllMatchesForUser(int uporabnikId)
+        {
+            var uporabnik = await _db.Uporabniki.FirstOrDefaultAsync(u => u.Id == uporabnikId);
+            if (uporabnik == null)
+                return NotFound("Uporabnik ne obstaja.");
+
+            var hasBand = await _db.Band.AnyAsync(b => b.owner_uporabnik_id == uporabnikId);
+
+            if (hasBand)
+            {
+                var band = await _db.Band.FirstOrDefaultAsync(b => b.owner_uporabnik_id == uporabnikId);
+                var objaveIds = await _db.Objave.Where(o => o.band_id == band.Id).Select(o => o.Id).ToListAsync();
+
+                var matchi = await _db.Match
+                    .Where(m => objaveIds.Contains(m.objava_id))
+                    .Join(_db.Uporabniki,
+                        match => match.uporabnik_id,
+                        user => user.Id,
+                        (match, user) => new
+                        {
+                            datum_matcha = match.datum_matcha,
+                            uporabnik_id = user.Id,
+                            ime = user.Ime,
+                            instrument = user.instrument,
+                            zanr = user.zanr,
+                            bio = user.bio,
+                            slika = user.slika,
+                            telefon = user.telefon,
+                            email = user.email,
+                            kraj_id = user.kraj_id
+                        })
+                    .ToListAsync();
+
+                return Ok(matchi);
+            }
+            else
+            {
+                var matchi = await _db.Match
+                    .Where(m => m.uporabnik_id == uporabnikId)
+                    .Join(_db.Objave,
+                        match => match.objava_id,
+                        objava => objava.Id,
+                        (match, objava) => new { match, objava })
+                    .Join(_db.Band,
+                        x => x.objava.band_id,
+                        band => band.Id,
+                        (x, band) => new { x.match, x.objava, band })
+                    .Join(_db.Uporabniki,
+                        x => x.band.owner_uporabnik_id,
+                        owner => owner.Id,
+                        (x, owner) => new
+                        {
+                            datum_matcha = x.match.datum_matcha,
+                            band_id = x.band.Id,
+                            band_ime = x.band.ime,
+                            band_opis = x.band.opis,
+                            band_slike = x.band.slike,
+                            owner_ime = owner.Ime,
+                            owner_email = owner.email,
+                            owner_telefon = owner.telefon,
+                            owner_instrument = owner.instrument,
+                            owner_slika = owner.slika,
+                            band_kraj_id = x.band.kraj_id
+                        })
+                    .ToListAsync();
+
+                return Ok(matchi);
+            }
         }
     }
 
