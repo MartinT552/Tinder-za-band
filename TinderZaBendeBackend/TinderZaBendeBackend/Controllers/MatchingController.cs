@@ -377,19 +377,23 @@ namespace TinderZaBendeBackend.Controllers
                 .Join(_db.Uporabniki,
                     x => x.band.owner_uporabnik_id,
                     owner => owner.Id,
-                    (x, owner) => new
+                    (x, owner) => new { x.match, x.objava, x.band, owner })
+                .Join(_db.Kraji,
+                    x => x.band.kraj_id,
+                    kraj => kraj.Id,
+                    (x, kraj) => new
                     {
                         datum_matcha = x.match.datum_matcha,
                         band_id = x.band.Id,
                         band_ime = x.band.ime,
                         band_opis = x.band.opis,
                         band_slike = x.band.slike,
-                        owner_ime = owner.Ime,
-                        owner_email = owner.email,
-                        owner_telefon = owner.telefon,
-                        owner_instrument = owner.instrument,
-                        owner_slika = owner.slika,
-                        band_kraj_id = x.band.kraj_id
+                        owner_ime = x.owner.Ime,
+                        owner_email = x.owner.email,
+                        owner_telefon = x.owner.telefon,
+                        owner_instrument = x.owner.instrument,
+                        owner_slika = x.owner.slika,
+                        kraj_ime = kraj.ime
                     })
                 .ToListAsync();
 
@@ -409,18 +413,22 @@ namespace TinderZaBendeBackend.Controllers
                 .Join(_db.Uporabniki,
                     match => match.uporabnik_id,
                     user => user.Id,
-                    (match, user) => new
+                    (match, user) => new { match, user })
+                .Join(_db.Kraji,
+                    x => x.user.kraj_id,
+                    kraj => kraj.Id,
+                    (x, kraj) => new
                     {
-                        datum_matcha = match.datum_matcha,
-                        uporabnik_id = user.Id,
-                        ime = user.Ime,
-                        instrument = user.instrument,
-                        zanr = user.zanr,
-                        bio = user.bio,
-                        slika = user.slika,
-                        telefon = user.telefon,
-                        email = user.email,
-                        kraj_id = user.kraj_id
+                        datum_matcha = x.match.datum_matcha,
+                        uporabnik_id = x.user.Id,
+                        ime = x.user.Ime,
+                        instrument = x.user.instrument,
+                        zanr = x.user.zanr,
+                        bio = x.user.bio,
+                        slika = x.user.slika,
+                        telefon = x.user.telefon,
+                        email = x.user.email,
+                        kraj_ime = kraj.ime
                     })
                 .ToListAsync();
 
@@ -446,18 +454,22 @@ namespace TinderZaBendeBackend.Controllers
                     .Join(_db.Uporabniki,
                         match => match.uporabnik_id,
                         user => user.Id,
-                        (match, user) => new
+                        (match, user) => new { match, user })
+                    .Join(_db.Kraji,
+                        x => x.user.kraj_id,
+                        kraj => kraj.Id,
+                        (x, kraj) => new
                         {
-                            datum_matcha = match.datum_matcha,
-                            uporabnik_id = user.Id,
-                            ime = user.Ime,
-                            instrument = user.instrument,
-                            zanr = user.zanr,
-                            bio = user.bio,
-                            slika = user.slika,
-                            telefon = user.telefon,
-                            email = user.email,
-                            kraj_id = user.kraj_id
+                            datum_matcha = x.match.datum_matcha,
+                            uporabnik_id = x.user.Id,
+                            ime = x.user.Ime,
+                            instrument = x.user.instrument,
+                            zanr = x.user.zanr,
+                            bio = x.user.bio,
+                            slika = x.user.slika,
+                            telefon = x.user.telefon,
+                            email = x.user.email,
+                            kraj_ime = kraj.ime
                         })
                     .ToListAsync();
 
@@ -478,19 +490,23 @@ namespace TinderZaBendeBackend.Controllers
                     .Join(_db.Uporabniki,
                         x => x.band.owner_uporabnik_id,
                         owner => owner.Id,
-                        (x, owner) => new
+                        (x, owner) => new { x.match, x.objava, x.band, owner })
+                    .Join(_db.Kraji,
+                        x => x.band.kraj_id,
+                        kraj => kraj.Id,
+                        (x, kraj) => new
                         {
                             datum_matcha = x.match.datum_matcha,
                             band_id = x.band.Id,
                             band_ime = x.band.ime,
                             band_opis = x.band.opis,
                             band_slike = x.band.slike,
-                            owner_ime = owner.Ime,
-                            owner_email = owner.email,
-                            owner_telefon = owner.telefon,
-                            owner_instrument = owner.instrument,
-                            owner_slika = owner.slika,
-                            band_kraj_id = x.band.kraj_id
+                            owner_ime = x.owner.Ime,
+                            owner_email = x.owner.email,
+                            owner_telefon = x.owner.telefon,
+                            owner_instrument = x.owner.instrument,
+                            owner_slika = x.owner.slika,
+                            kraj_ime = kraj.ime
                         })
                     .ToListAsync();
 

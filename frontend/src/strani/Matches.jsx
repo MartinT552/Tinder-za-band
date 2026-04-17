@@ -5,25 +5,11 @@ export default function Matches() {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [mode, setMode] = useState(null);
-  const [kraji, setKraji] = useState([]);
 
   const token = localStorage.getItem("token");
   const storedUser = localStorage.getItem("user");
   const parsedUser = storedUser ? JSON.parse(storedUser) : null;
   const userId = parsedUser?.id || parsedUser?.Id;
-
-  useEffect(() => {
-    const fetchKraji = async () => {
-      try {
-        const res = await fetch("https://localhost:7001/api/kraji");
-        const data = await res.json();
-        setKraji(data);
-      } catch (err) {
-        console.error("Napaka pri nalaganju krajev:", err);
-      }
-    };
-    fetchKraji();
-  }, []);
 
   useEffect(() => {
     const fetchMatches = async () => {
@@ -61,11 +47,6 @@ export default function Matches() {
 
     fetchMatches();
   }, [userId]);
-
-  const getKrajIme = (krajId) => {
-    const kraj = kraji.find(k => k.id === krajId);
-    return kraj ? kraj.ime : "Ni podatka";
-  };
 
   return (
     <div className="page center-page">
@@ -113,7 +94,7 @@ export default function Matches() {
                 <p><strong>Email:</strong> <a href={`mailto:${match.owner_email}`} style={{ color: "var(--accent)" }}>{match.owner_email}</a></p>
                 <p><strong>Telefon:</strong> <a href={`tel:${match.owner_telefon}`} style={{ color: "var(--accent)" }}>{match.owner_telefon}</a></p>
                 <p><strong>Instrument:</strong> {match.owner_instrument || "Ni podatka"}</p>
-                <p><strong>Kraj:</strong> {match.kraj_ime}</p>
+                <p><strong>Kraj:</strong> {match.kraj_ime || "Ni podatka"}</p>
                 
                 <p style={{ color: "var(--muted)", fontSize: "12px", marginTop: "12px" }}>
                   Match dosežen: {new Date(match.datum_matcha).toLocaleDateString()}
@@ -140,7 +121,7 @@ export default function Matches() {
                 <h4 style={{ marginBottom: "12px", color: "var(--accent)" }}>Kontakt podatki:</h4>
                 <p><strong>Email:</strong> <a href={`mailto:${match.email}`} style={{ color: "var(--accent)" }}>{match.email}</a></p>
                 <p><strong>Telefon:</strong> <a href={`tel:${match.telefon}`} style={{ color: "var(--accent)" }}>{match.telefon}</a></p>
-                <p><strong>Kraj:</strong> {match.kraj_ime}</p>
+                <p><strong>Kraj:</strong> {match.kraj_ime || "Ni podatka"}</p>
                 
                 <p style={{ color: "var(--muted)", fontSize: "12px", marginTop: "12px" }}>
                   Match dosežen: {new Date(match.datum_matcha).toLocaleDateString()}

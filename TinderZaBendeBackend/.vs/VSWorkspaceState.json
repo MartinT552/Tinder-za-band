@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\TinderZaBendeBackend"
+    "\\TinderZaBendeBackend",
+    "\\TinderZaBendeBackend\\Controllers",
+    "\\TinderZaBendeBackend\\Properties"
   ],
-  "SelectedNode": "\\TinderZaBendeBackend\\TinderZaBendeBackend.csproj",
   "PreviewInSolutionExplorer": false
 }

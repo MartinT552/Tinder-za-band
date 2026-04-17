@@ -3,68 +3,68 @@
   "WorkspaceRootPath": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\controllers\\matchingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\controllers\\matchingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\MatchingController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Controllers\\MatchingController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\controllers\\matchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\controllers\\matchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\controllers\\bandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\controllers\\bandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\MatchController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Controllers\\MatchController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\dto\\ustvariobjavodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\dto\\ustvariobjavodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\models\\entities\\bend_uporabnik_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\models\\entities\\bend_uporabnik_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Bend_Uporabnik_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Models\\Entities\\Bend_Uporabnik_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\models\\entities\\glasbenik_objava_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\models\\entities\\glasbenik_objava_like.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\BandController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Controllers\\BandController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\dto\\banddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\dto\\banddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\BandDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\DTO\\BandDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\models\\entities\\band.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\models\\entities\\band.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Band.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Models\\Entities\\Band.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\dto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\dto\\updateuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\LoginDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\DTO\\LoginDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\models\\entities\\uporabnik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\models\\entities\\uporabnik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\RegisterDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\DTO\\RegisterDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\UpdateUserDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\DTO\\UpdateUserDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\UporabnikiController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Controllers\\UporabnikiController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\controllers\\uporabnikicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\controllers\\uporabnikicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Uporabnik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\Models\\Entities\\Uporabnik.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|c:\\xampp\\htdocs\\github\\tinder-za-band\\tinderzabendebackend\\tinderzabendebackend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0563DD1-7746-42A4-98A0-6D46E0985FDB}|TinderZaBendeBackend\\TinderZaBendeBackend.csproj|solutionrelative:tinderzabendebackend\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\WeatherForecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TinderZaBendeBackend\\WeatherForecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,7 +78,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "UstvariObjavoDTO.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs",
@@ -86,12 +86,11 @@
               "RelativeToolTip": "TinderZaBendeBackend\\DTO\\UstvariObjavoDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T21:18:42.333Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-10T21:18:42.333Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MatchController.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\MatchController.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\MatchController.cs",
@@ -99,12 +98,11 @@
               "RelativeToolTip": "TinderZaBendeBackend\\Controllers\\MatchController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T21:10:51.104Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-10T21:10:51.104Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Glasbenik_objava_like.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs",
@@ -112,8 +110,7 @@
               "RelativeToolTip": "TinderZaBendeBackend\\Models\\Entities\\Glasbenik_objava_like.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T21:07:01.201Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-10T21:07:01.201Z"
             },
             {
               "$type": "Document",
@@ -125,8 +122,7 @@
               "RelativeToolTip": "TinderZaBendeBackend\\Models\\Entities\\Bend_Uporabnik_like.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T21:02:47.801Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-10T21:02:47.801Z"
             },
             {
               "$type": "Document",
@@ -136,14 +132,14 @@
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\MatchingController.cs",
               "ToolTip": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\MatchingController.cs",
               "RelativeToolTip": "TinderZaBendeBackend\\Controllers\\MatchingController.cs",
-              "ViewState": "AgIAANYAAAAAAAAAAAAkwPQAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAECAAAAAAAAAAAAABICAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-10T20:54:44.134Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "BandController.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\BandController.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\BandController.cs",
@@ -151,8 +147,7 @@
               "RelativeToolTip": "TinderZaBendeBackend\\Controllers\\BandController.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAAQwCkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:15:18.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-07T17:15:18.702Z"
             },
             {
               "$type": "Document",
@@ -180,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Program.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Program.cs",
@@ -192,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 9,
               "Title": "LoginDTO.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\LoginDTO.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\LoginDTO.cs",
@@ -204,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "RegisterDTO.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\RegisterDTO.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\RegisterDTO.cs",
@@ -216,7 +211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "UpdateUserDto.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\DTO\\UpdateUserDto.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\DTO\\UpdateUserDto.cs",
@@ -228,7 +223,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 12,
               "Title": "UporabnikiController.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\UporabnikiController.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\UporabnikiController.cs",
@@ -240,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Controllers\\AuthController.cs",
@@ -252,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "Uporabnik.cs",
               "DocumentMoniker": "C:\\xampp\\htdocs\\GitHub\\Tinder-za-band\\TinderZaBendeBackend\\TinderZaBendeBackend\\Models\\Entities\\Uporabnik.cs",
               "RelativeDocumentMoniker": "TinderZaBendeBackend\\Models\\Entities\\Uporabnik.cs",
@@ -273,6 +268,10 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-31T06:02:34.172Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }

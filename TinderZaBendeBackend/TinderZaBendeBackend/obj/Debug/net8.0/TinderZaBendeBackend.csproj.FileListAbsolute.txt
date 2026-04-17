@@ -423,3 +423,4 @@ C:\xampp\htdocs\GitHub\Tinder-za-band\TinderZaBendeBackend\TinderZaBendeBackend\
 C:\xampp\htdocs\GitHub\Tinder-za-band\TinderZaBendeBackend\TinderZaBendeBackend\obj\Debug\net8.0\TinderZaBendeBackend.genruntimeconfig.cache
 C:\xampp\htdocs\GitHub\Tinder-za-band\TinderZaBendeBackend\TinderZaBendeBackend\obj\Debug\net8.0\ref\TinderZaBendeBackend.dll
 C:\xampp\htdocs\GitHub\Tinder-za-band\TinderZaBendeBackend\TinderZaBendeBackend\bin\Debug\net8.0\TinderZaBendeBackend.staticwebassets.runtime.json
+C:\xampp\htdocs\GitHub\Tinder-za-band\TinderZaBendeBackend\TinderZaBendeBackend\obj\Debug\net8.0\swae.build.ex.cache
