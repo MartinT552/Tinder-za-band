@@ -138,8 +138,8 @@ Aplikacija uporablja PostgreSQL z naslednjimi glavnimi tabelami:
 
 
 
-## 👨‍💻 Avtor
+##  Avtor
 
-**Mark Hrastnik**  
+**Mark Hrastnik & Martin Tuk**  
 Šolski center Velenje — Elektro in računalniška šola  
 2025/2026
