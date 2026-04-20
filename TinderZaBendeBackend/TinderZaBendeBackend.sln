@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37012.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinderZaBendeBackend", "TinderZaBendeBackend\TinderZaBendeBackend.csproj", "{C0563DD1-7746-42A4-98A0-6D46E0985FDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0563DD1-7746-42A4-98A0-6D46E0985FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0563DD1-7746-42A4-98A0-6D46E0985FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0563DD1-7746-42A4-98A0-6D46E0985FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0563DD1-7746-42A4-98A0-6D46E0985FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4025E800-8086-4900-AD8B-B7241BC36FC5}
+	EndGlobalSection
+EndGlobal
