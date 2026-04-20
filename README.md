@@ -18,7 +18,7 @@ TinderZaBende deluje po principu vzajemnega všečkanja (**matching**): glasbeni
 
 ---
 
-## 🛠️ Tehnološki sklad
+##  Tehnološki sklad
 
 ### Frontend
 | Tehnologija | Namen |
@@ -44,7 +44,7 @@ TinderZaBende deluje po principu vzajemnega všečkanja (**matching**): glasbeni
 
 ### 1. Zagon backenda
 
-Odpri mapo `TinderZaBendeBackend` v **Visual Studio** in pritisni gumb ▶️ **Run**.
+Odpri mapo `TinderZaBendeBackend` v **Visual Studio** in pritisni gumb  **Run**.
 
 ---
 
@@ -93,7 +93,7 @@ Tinder-za-band/
 
 ---
 
-## 🗄️ Podatkovna baza
+##  Podatkovna baza
 
 Aplikacija uporablja PostgreSQL z naslednjimi glavnimi tabelami:
 
@@ -129,7 +129,7 @@ Aplikacija uporablja PostgreSQL z naslednjimi glavnimi tabelami:
 
 ---
 
-## 📸 Zaslonske slike
+##  Zaslonske slike
 <img width="1917" height="867" alt="image" src="https://github.com/user-attachments/assets/b58d5b1c-b900-4597-847b-ceb1fc87a9c2" />
 <img width="1899" height="873" alt="image" src="https://github.com/user-attachments/assets/5a7b1c1a-bcac-4db4-8b9a-ea51014c2655" />
 <img width="1897" height="870" alt="image" src="https://github.com/user-attachments/assets/169584aa-324a-41a6-adba-da8892cb01de" />
