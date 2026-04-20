@@ -136,7 +136,8 @@ Aplikacija uporablja PostgreSQL z naslednjimi glavnimi tabelami:
 <img width="1896" height="869" alt="image" src="https://github.com/user-attachments/assets/f678c87d-634e-4265-9c59-a3a355334401" />
 <img width="1896" height="871" alt="image" src="https://github.com/user-attachments/assets/97f97321-fd53-4300-baff-ef5d22a3d93d" />
 
-
+## Projektno vodenje
+Kanban: https://app.clickup.com/90152359123/v/b/2kyqzn6k-475
 
 ##  Avtor
 
