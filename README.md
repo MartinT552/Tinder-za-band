@@ -111,21 +111,21 @@ Aplikacija uporablja PostgreSQL z naslednjimi glavnimi tabelami:
 
  API Končne točke
 
-| Metoda | Pot | Opis | Zaščiteno |
+| Metoda | Pot | Opis 
 |---|---|---|---|
-| POST | `/api/auth/register` | Registracija glasbenika | ❌ |
-| POST | `/api/auth/login` | Prijava | ❌ |
-| GET | `/api/auth/me` | Podatki prijavljenega | ✅ |
-| GET | `/api/band/moj` | Band prijavljenega | ✅ |
-| POST | `/api/band` | Ustvarjanje benda | ✅ |
-| POST | `/api/band/objava` | Objava benda | ✅ |
-| GET | `/api/matching/objave-za-uporabnika/{id}` | Objave za glasbenika | ❌ |
-| GET | `/api/matching/uporabniki-za-band/{id}` | Glasbeniki za band | ❌ |
-| POST | `/api/matching/glasbenik-oceni-objavo` | Glasbenikov like/dislike | ❌ |
-| POST | `/api/matching/band-oceni-uporabnika` | Bendov like/dislike | ❌ |
-| GET | `/api/matching/moji-matchi/{id}` | Matchi glasbenika | ❌ |
-| GET | `/api/matching/moji-matchi-band/{id}` | Matchi benda | ❌ |
-| GET | `/api/kraji` | Seznam krajev | ❌ |
+| POST | `/api/auth/register` | Registracija glasbenika 
+| POST | `/api/auth/login` | Prijava 
+| GET | `/api/auth/me` | Podatki prijavljenega 
+| GET | `/api/band/moj` | Band prijavljenega 
+| POST | `/api/band` | Ustvarjanje benda 
+| POST | `/api/band/objava` | Objava benda 
+| GET | `/api/matching/objave-za-uporabnika/{id}` | Objave za glasbenika 
+| GET | `/api/matching/uporabniki-za-band/{id}` | Glasbeniki za band 
+| POST | `/api/matching/glasbenik-oceni-objavo` | Glasbenikov like/dislike 
+| POST | `/api/matching/band-oceni-uporabnika` | Bendov like/dislike 
+| GET | `/api/matching/moji-matchi/{id}` | Matchi glasbenika 
+| GET | `/api/matching/moji-matchi-band/{id}` | Matchi benda 
+| GET | `/api/kraji` | Seznam krajev 
 
 ---
 
