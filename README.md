@@ -112,7 +112,7 @@ Aplikacija uporablja PostgreSQL z naslednjimi glavnimi tabelami:
  API Končne točke
 
 | Metoda | Pot | Opis 
-|---|---|---|---|
+|---|---|---|
 | POST | `/api/auth/register` | Registracija glasbenika 
 | POST | `/api/auth/login` | Prijava 
 | GET | `/api/auth/me` | Podatki prijavljenega 
